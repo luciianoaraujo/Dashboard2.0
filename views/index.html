@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Landing Page</title>
+  <!-- fontawesome -->
+  <script src="../vendor/fontawesome-free/js/all.js"></script>
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <!-- cards no topo da pagina -->
+  <div id="cardsArea" class="row m-2 mt-4"></div>
+  <!-- informações em baixo das cards -->
+  <div id="escolhaCombustivel" class="container-fluid text-right mb-4">
+    <h3 id="escolha"><i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b>ETANOL 64%</b></h3>
+    <div id="escolhaInfo" class="container text-center hide">
+      <hr>
+      <span>Para carros flex é preciso ter cautela ao escolher que forma abastecer. A principal diferença de preços e
+        vantagens entre os dois combustíveis está na proporção preço X desempenho. Para o álcool ser mais vantajoso do
+        que
+        a gasolina, o preço do litro tem que custar até 70% do litro da gasolina.</span>
+      <hr>
+    </div>
+  </div>
+  <!-- graficos -->
+  <div class="container">
+    <h3>HISTORICO DE PREÇOS</h3>
+  </div>
+  <div class="d-flex align-content-around" id="chartArea">
+    <!-- Page level plugins -->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+    <canvas class='col-xs-12 col-md-4' id="chartDie" height="275px"></canvas>
+    <canvas class='col-xs-12 col-md-4' id="chartEta" height="275px"></canvas>
+    <canvas class='col-xs-12 col-md-4' id="chartGas" height="275px"></canvas>
+  </div>
+  <!-- tabela de combustiveis -->
+  <div id="tabela" class="table-responsive container">
+    <!-- divs no topo da tabela -->
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+          aria-controls="pills-home" aria-selected="true">Gasolina</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+          aria-controls="pills-profile" aria-selected="false">Etanol</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-diesel-tab" data-toggle="pill" href="#pills-diesel" role="tab"
+          aria-controls="pills-diesel" aria-selected="false">Diesel</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <table class="table">
+          <thead>
+            <th>Fornecedor</th>
+            <th>Preço</th>
+            <th>Data</th>
+          </thead>
+          <tbody id='tabelaGasolina'>
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <table class="table">
+          <thead>
+            <th>Fornecedor</th>
+            <th>Preço</th>
+            <th>Data</th>
+          </thead>
+          <tbody id='tabelaEtanol'>
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-pane fade" id="pills-diesel" role="tabpanel" aria-labelledby="pills-diesel-tab">
+        <table class="table">
+          <thead>
+            <th>Fornecedor</th>
+            <th>Preço</th>
+            <th>Data</th>
+          <tbody id='tabelaDiesel'>
+          </tbody>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="feedbackArea">
+
+  </div>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../vendor/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="../js/index.js"></script>
+  <script src="../js/scripts.js"></script>
+  <script src="../js/sidebar.js"></script>
+</body>
+
+</html>
