@@ -32,3 +32,23 @@
 #escolha {
     cursor: pointer;
 }
+
+.menor-preco {
+    fill: transparent;
+    stroke: rgb(255, 238, 0);
+    stroke-width: 15px;
+    stroke-linejoin: miter;
+    stroke-dasharray: 240;
+    shape-rendering: auto;
+}
+
+a {
+    font-size: 1.3em;
+}
+
+td, th {
+    font-size: 1.2em;
+    width: 33.333%;
+    text-align: center;
+}
+

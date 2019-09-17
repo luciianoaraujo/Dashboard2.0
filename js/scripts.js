@@ -29,6 +29,7 @@ async function loadTableData(query) {
                 makeCards('#cardsArea', value);
         });
         makeCharts(diesel, gasolina, etanol);
+        selecionarCombustivel('#escolha',gasolina[0], etanol[0]);
     })
 }
 function makeTable(tableName, value) {
@@ -38,7 +39,7 @@ function makeTable(tableName, value) {
 
 function makeCards(cardsArea, value) {
     let tag = `<div class="col-md-4">
-    <div class="card mb-1 shadow-sm">
+    <div class="card mb-1 shadow-sm" id='${value.nome}Card'>
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="card-name">
@@ -164,4 +165,26 @@ async function makeCharts(diesel, gasolina, etanol) {
             }
         }
     });
+}
+
+function selecionarCombustivel(escolha, gasolina, etanol) {
+    let porcentagem = parseFloat(etanol.preco) / parseFloat(gasolina.preco);
+    let tag;
+
+    if (porcentagem < 0.7) {
+        tag = `
+        <i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b>ETANOL ${porcentagem.toFixed(2)*100}%</b>
+        `;
+        $(`#${etanol.nome}Card`).addClass('menor-preco');
+    } else {
+        tag = `
+        <i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b>GASOLINA ${porcentagem.toFixed(2)*100}%</b>
+        `;
+        $(`#${gasolina.nome}Card`).addClass('menor-preco');
+    }
+
+    console.log(porcentagem);
+
+    $(escolha).append(tag);
+
 }
