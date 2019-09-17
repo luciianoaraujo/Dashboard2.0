@@ -1,3 +1,12 @@
+$(window).on('load', async () => {
+    loadTableData('comb');
+    btnArea();
+})
+$('#escolha').on('click', (e) => {
+    $('#escolhaInfo').toggleClass('hide');
+        
+})
+
 async function loadTableData(query) {
     var url = `http://localhost:3333/${query}`;
     let i = 0;

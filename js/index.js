@@ -1,11 +1,4 @@
-$(window).on('load', async () => {
-    loadTableData('comb');
-    btnArea();
-})
-$('#escolha').on('click', (e) => {
-    $('#escolhaInfo').toggleClass('hide');
-        
-})
+
 
 function btnArea(){
     tag = `

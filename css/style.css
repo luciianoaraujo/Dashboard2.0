@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa|Neucha|Playball|Playfair+Display+SC&display=swap');
+
 ::-webkit-scrollbar-track {
     background-color: #F4F4F4;
 }
@@ -34,12 +35,7 @@
 }
 
 .menor-preco {
-    fill: transparent;
-    stroke: rgb(255, 238, 0);
-    stroke-width: 15px;
-    stroke-linejoin: miter;
-    stroke-dasharray: 240;
-    shape-rendering: auto;
+    border: 1px solid red;
 }
 
 a {
@@ -52,3 +48,6 @@ td, th {
     text-align: center;
 }
 
+.card {
+    min-height: 175px;
+}

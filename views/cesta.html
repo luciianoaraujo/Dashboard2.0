@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Landing Page</title>
+    <!-- fontawesome -->
+    <script src="../vendor/fontawesome-free/js/all.js"></script>
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="container">
+        <ul class="nav nav-tabs justify-content-center" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="true">Mercado mais barato</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Cesta mais barata</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-diesel-tab" data-toggle="pill" href="#pills-diesel" role="tab"
+                    aria-controls="pills-diesel" aria-selected="false">Diesel</a>
+                </li>
+              </ul>
+    <div id="cardsArea" class="row mt-4 justify-content-center">
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fornecedor</th>
+                <th>Produto</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaCesta">
+
+        </tbody>
+    </table>
+
+    <div id="feedbackArea">
+    </div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../vendor/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/cesta.js"></script>
+    <script src="../js/sidebar.js"></script>
+</body>
+
+</html>
