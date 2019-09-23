@@ -51,3 +51,8 @@ td, th {
 .card {
     min-height: 175px;
 }
+
+.cards-container {
+    overflow: scroll;
+    max-height: 99vh;
+}

@@ -1,5 +1,5 @@
 $(window).on('load', async () => {
-    loadTableData('cesta');
+    loadTableData('gas');
     btnArea();
 })
 $('#escolha').on('click', (e) => {
@@ -11,24 +11,10 @@ async function loadTableData(query) {
     var url = `http://localhost:3333/${query}`;
     let i = 0;
     return await $.get(url, (data) => {
-        $.each(data.ranking_cesta, function (key, value) {
-            if(key < 3){
-                makeDisplay('#displayRanking', value);
-            }
-        });
-        $.each(data.cesta_barata.items, function (aux_key, aux_value) {
-            $.each(data.cesta_barata.items[aux_key], function (key, value) {
-                makeCards('#cardsArea', value);
-            });
+        $.each(data, (key, value) => { 
+             makeCards('#cardsArea', value)
         });
     })
-}
-function makeDisplay(displayName, value) {
-    let tag = `
-    <h4>R$${value.preco}</h4>
-    <span>${value.nome_fornecedor}</span>
-`
-    $(displayName).append(tag);
 }
 function makeTable(tableName, value) {
     let tag = `<tr><td>${value.nome_fornecedor}</td><td>${value.produto}</td><td>${value.preco}</td></tr>`;
@@ -36,16 +22,21 @@ function makeTable(tableName, value) {
 }
 
 function makeCards(cardsArea, value) {
-    let tag = `<div>
-    <div class="card mb-1 shadow-sm">
+    let tag = `<div class="col-md-4">
+    <div class="card mb-1 shadow-sm" id='${value.nome}Card'>
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="card-name">
-                    <h6 class="card-title">${value.nome_fornecedor}</h6>
+                    <h4 class="card-title">${value.nome}</h4>
+                    <h6 class="card-title">${value.fornecedor}</h6>
                 </div>
                 <div class="preco">
                     <h3 class="card-title">R$${value.preco}</h3>
                 </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div></div>
+                <small >R$ ${value.diferenca_menor_maior} mais barato</small>
             </div>
         </div>
     </div>
