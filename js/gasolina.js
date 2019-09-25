@@ -47,26 +47,26 @@ function makeTable(tableName, value) {
 }
 
 function makeCards(cardsArea, value) {
-    let tag = `<div class="col-md-4">
-    <div class="card mb-1 shadow-sm" id='${value.nome}Card'>
-        <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="card-name">
-                    <h4 class="card-title">${value.nome}</h4>
-                    <h6 class="card-title">${value.fornecedor}</h6>
-                </div>
-                <div class="preco">
-                    <h3 class="card-title">R$${value.preco}</h3>
-                </div>
+    let tag = `
+<div class="col-lg-4">
+<div class="card mb-4 cardcom" id='${value.nome}Card'>
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-top">
+            <div class="card-name">
+                <h4 class="card-title">${value.nome}</h4>
             </div>
-            <div class="d-flex justify-content-between align-items-center">
-                <div></div>
-                <small >R$ ${value.diferenca_menor_maior} mais barato</small>
+            <div class="preco text-center">
+                <h3 class="card-title text-center">R$${value.preco}</h3>
             </div>
         </div>
+        <div>
+            <h6 class="card-title">${value.fornecedor}</h6>
+            <small>R$ ${value.diferenca_menor_maior} mais barato</small>
+        </div>
     </div>
-</div>`
-
+</div>
+</div>
+`
     $(cardsArea).append(tag);
 }
 
@@ -182,12 +182,16 @@ function selecionarCombustivel(escolha, gasolina, etanol) {
 
     if (porcentagem < 0.7) {
         tag = `
-        <i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b>ETANOL ${porcentagem.toFixed(2)*100}%</b>
+        <i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b style="
+        color: rgb(255, 196, 0);
+    ">ETANOL ${porcentagem.toFixed(2)*100}%</b>
         `;
         $(`#${etanol.nome}Card`).addClass('menor-preco');
     } else {
         tag = `
-        <i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b>GASOLINA ${porcentagem.toFixed(2)*100}%</b>
+        <i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b style="
+        color: rgb(255, 196, 0);
+    ">GASOLINA ${porcentagem.toFixed(2)*100}%</b>
         `;
         $(`#${gasolina.nome}Card`).addClass('menor-preco');
     }

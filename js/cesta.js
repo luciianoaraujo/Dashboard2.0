@@ -37,12 +37,13 @@ function makeTable(tableName, value) {
 
 function makeCards(cardsArea, value) {
     let tag = `<div>
-    <div class="card mb-1 shadow-sm">
+    <div class="card cardces mb-1 shadow-sm">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="card-name">
-                    <h6 class="card-title">${value.nome_fornecedor}</h6>
-                </div>
+                    <h5 class="card-title">${value.nome_fornecedor}</h5>
+                    <h5 class="card-title">${value.produto}</h5>
+                    </div>
                 <div class="preco">
                     <h3 class="card-title">R$${value.preco}</h3>
                 </div>
