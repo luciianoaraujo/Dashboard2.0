@@ -1,0 +1,215 @@
+<!-- Modelo Procon SP: -->
+    <!-- Área para cadastrar consumidor:
+        PESSOA:
+            'Deseja incluir Nome Social' (Decreto nº8.727/2016) - Se sim: Nome Social e Gênero (Masculinidade ou Feminilidade),
+
+            'Pessoa com deficiência?' - Se sim: Tipo de Deficiência,
+        
+        NOTIFICAÇÕES:
+
+            Tipo de Notificação: email
+    -->
+    <!-- Registro de Atendimento - Reclamação:
+
+            Sou titular da compra ou contratação (Checkbox)
+            "Apenas o titular da compra ou contratação, poderá solicitar uma reclamação na internet. Se você não for o titular desta solicitação, deverá ir a um de nossos postos nos Poupatempos com uma procuração"
+
+            Identificação:
+            https://prnt.sc/pbv0b0
+    -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Procon - Reclamação</title>
+    <!-- fontawesome -->
+    <script src="../vendor/fontawesome-free/js/all.js"></script>
+    <script src="https://kit.fontawesome.com/4a9647b8f2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container justify-content-center p-5">
+        <div class="row">
+            <!-- Dados do Consumidor -->
+            <div class="col-6 col-lg-6 col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-danger text-white"><i class="far fa-address-card"></i> Dados do consumidor</div>
+                    <div class="card-body">
+                        <form>
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label for="email">Endereço de Email</label>
+                                <input type="email" class="form-control" id='email' aria-describedby="emailHelp" placeholder="Email" value="exemplo@gmail.com" readonly>
+                                <small id='emailHelp' class="form-text text-muted">Não compartilharemos seu email.</small>
+                            </div>
+                            <!-- Nome Completo -->
+                            <div class="form-group">
+                                <label for="nomeCompleto">Nome Completo*</label>
+                                <input type="text" class="form-control" id='nomeCompleto' placeholder='Digite seu nome completo' required>
+                            </div>
+                            <!-- Sexo -->
+                            <div class="form-group">
+                                <label for="sexo">Sexo*</label>
+                                <select id="sexo" class="form-control" required>
+                                    <option selected disabled>Selecione uma opção</option>
+                                    <option>Feminino</option>
+                                    <option>Masculino</option>                            
+                                </select>
+                            </div>
+                            <!-- Nome Social -->
+
+                            <!-- CPF (Falta validação) -->
+                            <div class="form-group">
+                                <label for="cpf">CPF*</label>
+                                <input type="text" class='form-control' id="cpf" placeholder="###.###.###-##" required>                        
+                            </div>
+                            <!-- Informações RG (Falta validação) -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Número do RG -->
+                                    <div class="form-group">
+                                        <label for="rg">RG</label>
+                                        <input type="text" class='form-control' id='rg' placeholder="Digite seu RG">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <!-- UF Emissão -->
+                                    <div class="form-group">
+                                        <label for="ufEmissao">UF Emissão</label>
+                                        <select id="ufEmissao" class="form-control" aria-describedby="ufEmissao">
+                                            <option selected disabled>Selecione uma opção</option>
+                                            <!-- Inserção de Estados -->
+                                        </select>
+                                        <small id='ufEmissao'>Digite o estado brasileiro que seu RG foi emitido.</small>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <!-- Orgão Emissor -->
+                                    <div class="form-group">
+                                        <label for="orgaoEmissor">Orgão Emissor</label>
+                                        <select id="orgaoEmissor" class="form-control" aria-describedby="orgaoEmissor">
+                                            <option selected disabled>Selecione uma opção</option>
+                                            <!-- Inserção de orgãos emissores -->
+                                        </select>
+                                        <small id='orgaoEmissor'>Digite o orgão responsável pela emissão do RG.</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Data de Nascimento -->
+                            <div class="form-group">
+                                <label for="dataNascimento">Data de Nascimento*</label>
+                                <input type="date" class='form-control' id='dataNascimento' required>
+                            </div>
+                            <!-- Deficiência -->
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id='deficiencia'>
+                                <label for="deficiencia" class="form-check-label">Possui deficiência?</label>
+                            </div>
+                            <!-- Tipo de Deficiência -->
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Endereço e Resposta-->
+            <div class="col-6 col-lg-6 col-sm-12">
+                <div class="card mb-2">
+                    <div class="card-header bg-info text-white"><i class="fas fa-map-marker-alt"></i> Endereço do Consumidor</div>
+                    <div class="card-body">
+                        <form>
+                            <!-- CEP -->
+                            <div class="form-group">
+                                <label for="cep">CEP*</label>
+                                <input type="text" class='form-control' id='cep' placeholder="Digite o CEP" required>
+                            </div>
+                            <!-- Estado -->
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <input type="text" class='form-control' id='estado' placeholder="Estado" required readonly>
+                            </div>
+                            <!-- Cidade -->
+                            <div class="form-group">
+                                <label for="cidade">Cidade</label>
+                                <input type="text" class='form-control' id='cidade' placeholder="Cidade" required readonly>
+                            </div>
+                            <!-- Bairro -->
+                            <div class="form-group">
+                                <label for="bairro">Bairro</label>
+                                <input type="text" class='form-control' id='bairro' placeholder="Bairro" required readonly>
+                            </div>
+                            <!-- Logradouro e Número -->
+                            <div class="row">
+                                <div class="col-8">
+                                    <!-- Logradouro (Automático a partir do CEP) -->
+                                    <div class="form-group">
+                                        <label for="logradouro">Logradouro*</label>
+                                        <input type="text" class='form-control' id='logradouro' placeholder="Logradouro" required readonly>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <!-- Número da Casa -->
+                                    <div class="form-group">
+                                        <label for="numero">Número</label>
+                                        <input type="number" class='form-control' id='numero' placeholder="Número" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <!-- Complemento -->
+                            <div class="form-group">
+                                <label for="complemento">Complemento</label>
+                                <input type="text" class='form-control' id='complemento' placeholder="Complemento" required>
+                            </div>                                                       
+                            <!-- Telefones -->
+                            <div class="row">
+                                <div class="col-6">
+                                    <!-- Telefone Fixo -->
+                                    <div class="form-group">
+                                        <label for="telefoneFixo">Telefone Fixo</label>
+                                        <input type="text" class='form-control' id='telefoneFixo' placeholder="Telefone Fixo">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <!-- Telefone Celular -->
+                                    <div class="form-group">
+                                        <label for="telefoneCelular">Telefone Celular</label>
+                                        <input type="text" class='form-control' id='telefoneCelular' placeholder="Telefone Celular">
+                                    </div>
+                                </div>
+                            </div>                                                    
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-warning text-white"><i class="fas fa-bell"></i> Resposta da Reclamação</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="notificacao">Tipo da Notificação*</label>
+                            <select id="notificacao" class="form-control" required>
+                                <option selected disabled>Selecione uma opção</option>
+                                <option>Email</option>                            
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../vendor/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
