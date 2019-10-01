@@ -25,8 +25,10 @@ async function loadTableData(query) {
 }
 function makeDisplay(displayName, value) {
     let tag = `
-    <h4>R$${value.preco}</h4>
-    <span>${value.nome_fornecedor}</span>
+    <div class=''>
+        <h4 class='mt-4'>R$${value.preco}</h4>
+        <span>${value.nome_fornecedor}</span>
+    </div>
 `
     $(displayName).append(tag);
 }

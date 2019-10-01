@@ -92,3 +92,9 @@ tbody tr:hover {
     background: #247cc6;
     color: #fff;
 }
+
+.ranking {
+    border: 1px solid black;
+    border-radius: 1em;
+    padding: 1em;
+}

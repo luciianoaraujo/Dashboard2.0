@@ -124,7 +124,7 @@ async function makeCharts(diesel, gasolina, etanol) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: false,
-                        stepSize: 0.01
+                        stepSize: 0.05
                     }
                 }]
             }
