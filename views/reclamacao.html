@@ -124,6 +124,11 @@
                     $("#bairro").removeClass("is-valid");
                     $("#cidade").removeClass("is-valid");
                     $("#estado").removeClass("is-valid");
+                    $("#cep").removeClass("is-invalid");
+                    $("#logradouro").removeClass("is-invalid");
+                    $("#bairro").removeClass("is-invalid");
+                    $("#cidade").removeClass("is-invalid");
+                    $("#estado").removeClass("is-invalid");
                     limpa_formulário_cep();
                 }
             });
@@ -168,7 +173,7 @@
 </head>
 
 <body>
-    <div class="container justify-content-center p-5">
+    <div class="container justify-content-center p-0">
         <div class="card">
             <div class="card-header text-white text-center bg-dark font-weight-bold">FORMULÁRIO DE RECLAMAÇÃO - CONSUMIDOR</div>
             <div class="card-body">
@@ -366,6 +371,14 @@
             </div>
         </div>
     </div>
+
+    <div class="menu"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('.menu').load('menu.html');
+        });
+    </script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../vendor/jquery.js"></script>
