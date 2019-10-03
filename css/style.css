@@ -39,8 +39,12 @@
 }
 
 .menor-preco {
+<<<<<<< Updated upstream
     border: 30px solid #ffc400;
     border-width: 3px;
+=======
+    border: 4px solid rgb(255, 196, 0);
+>>>>>>> Stashed changes
 }
 
 a {
