@@ -39,7 +39,8 @@
 }
 
 .menor-preco {
-    border: 1px solid red;
+    border: 30px solid #ffc400;
+    border-width: 3px;
 }
 
 a {
