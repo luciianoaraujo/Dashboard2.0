@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans|Open+Sans+Condensed:300&display=swap");
 
 #topContent small {
-  color: greenyellow;
+  color: #FFC400;
   margin-bottom: 0.75rem;
 }
 
@@ -20,8 +20,7 @@
 }
 
 .card {
-  background: #247cc6;
-  
+  background: #247CC6;
   border-radius: 5rem;
   padding: 1em;
   margin: 0;
@@ -31,8 +30,6 @@
   background-position-y: -50%;
   background-position-x: right;
   color: #fff;
-  -webkit-transform: scale(0.95);
-  transform: scale(0.95);
 }
 .card:hover {
 	-webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
@@ -79,5 +76,22 @@
       -webkit-transform: scale(1);
               transform: scale(1);
     }
+  }
+    
+  .scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+      
+  .card2 {
+    display: inline-block;
+  }
+  
+  .card2 {
+    border: 2px solid $red;
+    width: 150px;
+    height: 75px;
+    background: black;
   }
   

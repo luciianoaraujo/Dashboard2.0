@@ -48,7 +48,7 @@ function makeTable(tableName, value) {
 
 function makeCards(cardsArea, value) {
     let tag = `
-<div class="col-lg-4">
+<div class="col">
 <div class="card mb-4 cardcom" id='${value.nome}Card'>
     <div class="card-body">
         <div class="d-flex justify-content-between align-items-top">
@@ -64,7 +64,7 @@ function makeCards(cardsArea, value) {
                 <div class="col-8">
                     <div>
                         <h6 class="card-title">${value.fornecedor}</h6>
-                        <small>R$ ${value.diferenca_menor_maior} mais barato</small>
+                        <small style>R$ ${value.diferenca_menor_maior} mais barato</small>
                     </div>
                 </div>
                 <div class="col-4">

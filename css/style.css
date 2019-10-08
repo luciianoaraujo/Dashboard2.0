@@ -39,7 +39,7 @@
 }
 
 .menor-preco {
-    border: 30px solid #ffc400;
+    border: 30px solid #FFC400;
     border-width: 3px;
 }
 
@@ -59,13 +59,13 @@ a {
 }
 
 h1 {
-    color: #247cc6;
+    color: #247CC6;
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 4em;
     font-weight: bold;
 }
 .section-title {
-    color: #247cc6;
+    color: #247CC6;
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 3em;
     font-weight: bold;
@@ -79,7 +79,7 @@ table {
     box-shadow: 0px 8px 10px rgb(185, 185, 185);
 }
 thead {
-    color: #247cc6;
+    color: #247CC6;
     font-size: 1.1em;
     text-shadow: 0px 4px 5px rgb(219, 219, 219);
     font-weight: bolder;
@@ -90,7 +90,7 @@ tr {
 }
 tbody tr:hover {
     box-shadow: 0px 0px 5px #777;
-    background: #247cc6;
+    background: #247CC6;
     color: #fff;
 }
 
