@@ -33,18 +33,19 @@
 
     <!-- Javascript - Autocomplete CEP -->
     <script type="text/javascript" >
+        //Endereço do Consumidor
         $(document).ready(function() {
 
             function limpa_formulário_cep() {
                 // Limpa valores do formulário de CEP.
-                $("#logradouro").val("");
-                $("#bairro").val("");
-                $("#cidade").val("");
-                $("#estado").val("");
+                $("#logradouro-consumidor").val("");
+                $("#bairro-consumidor").val("");
+                $("#cidade-consumidor").val("");
+                $("#estado-consumidor").val("");
             }
             
             //Quando o campo CEP perde o foco.
-            $("#cep").blur(function() {
+            $("#cep-consumidor").blur(function() {
 
                 //Nova variável "CEP" somente com dígitos.
                 var cep = $(this).val().replace(/\D/g, '');
@@ -59,45 +60,45 @@
                     if(validacep.test(cep)) {
 
                         //Preenche os campos com "..." enquanto consulta webservice.
-                        $("#logradouro").val("Preenchendo...");
-                        $("#bairro").val("Preenchendo...");
-                        $("#cidade").val("Preenchendo...");
-                        $("#estado").val("Preenchendo...");
+                        $("#logradouro-consumidor").val("Preenchendo...");
+                        $("#bairro-consumidor").val("Preenchendo...");
+                        $("#cidade-consumidor").val("Preenchendo...");
+                        $("#estado-consumidor").val("Preenchendo...");
 
                         //Consulta o webservice viacep.com.br/
                         $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
                             if (!("erro" in dados)) {
                                 //Atualiza os campos com os valores da consulta.
-                                $("#cep").removeClass("is-invalid");
-                                $("#cep").addClass("is-valid");
-                                $("#logradouro").removeClass("is-invalid");
-                                $("#logradouro").addClass("is-valid");
-                                $("#logradouro").val(dados.logradouro);
-                                $("#bairro").removeClass("is-invalid");
-                                $("#bairro").addClass("is-valid");
-                                $("#bairro").val(dados.bairro);
-                                $("#cidade").removeClass("is-invalid");
-                                $("#cidade").addClass("is-valid");
-                                $("#cidade").val(dados.localidade);
-                                $("#estado").removeClass("is-invalid");
-                                $("#estado").addClass("is-valid");
-                                $("#estado").val(dados.uf);
+                                $("#cep-consumidor").removeClass("is-invalid");
+                                $("#cep-consumidor").addClass("is-valid");
+                                $("#logradouro-consumidor").removeClass("is-invalid");
+                                $("#logradouro-consumidor").addClass("is-valid");
+                                $("#logradouro-consumidor").val(dados.logradouro);
+                                $("#bairro-consumidor").removeClass("is-invalid");
+                                $("#bairro-consumidor").addClass("is-valid");
+                                $("#bairro-consumidor").val(dados.bairro);
+                                $("#cidade-consumidor").removeClass("is-invalid");
+                                $("#cidade-consumidor").addClass("is-valid");
+                                $("#cidade-consumidor").val(dados.localidade);
+                                $("#estado-consumidor").removeClass("is-invalid");
+                                $("#estado-consumidor").addClass("is-valid");
+                                $("#estado-consumidor").val(dados.uf);
                             }
                             else {
                                 //CEP pesquisado não foi encontrado.
                                 limpa_formulário_cep();
                                 alert("Erro: CEP não encontrado.");
-                                $("#cep").removeClass("is-valid");
-                                $("#cep").addClass("is-invalid");
-                                $("#logradouro").removeClass("is-valid");
-                                $("#logradouro").addClass("is-invalid");
-                                $("#bairro").removeClass("is-valid");
-                                $("#bairro").addClass("is-invalid");
-                                $("#cidade").removeClass("is-valid");
-                                $("#cidade").addClass("is-invalid");
-                                $("#estado").removeClass("is-valid");
-                                $("#estado").addClass("is-invalid");
+                                $("#cep-consumidor").removeClass("is-valid");
+                                $("#cep-consumidor").addClass("is-invalid");
+                                $("#logradouro-consumidor").removeClass("is-valid");
+                                $("#logradouro-consumidor").addClass("is-invalid");
+                                $("#bairro-consumidor").removeClass("is-valid");
+                                $("#bairro-consumidor").addClass("is-invalid");
+                                $("#cidade-consumidor").removeClass("is-valid");
+                                $("#cidade-consumidor").addClass("is-invalid");
+                                $("#estado-consumidor").removeClass("is-valid");
+                                $("#estado-consumidor").addClass("is-invalid");
                             }
                         });
                     }
@@ -105,30 +106,129 @@
                         //CEP é inválido.
                         limpa_formulário_cep();
                         alert("Erro: Formato de CEP inválido.");
-                        $("#cep").removeClass("is-valid");
-                        $("#cep").addClass("is-invalid");
-                        $("#logradouro").removeClass("is-valid");
-                        $("#logradouro").addClass("is-invalid");
-                        $("#bairro").removeClass("is-valid");
-                        $("#bairro").addClass("is-invalid");
-                        $("#cidade").removeClass("is-valid");
-                        $("#cidade").addClass("is-invalid");
-                        $("#estado").removeClass("is-valid");
-                        $("#estado").addClass("is-invalid");
+                        $("#cep-consumidor").removeClass("is-valid");
+                        $("#cep-consumidor").addClass("is-invalid");
+                        $("#logradouro-consumidor").removeClass("is-valid");
+                        $("#logradouro-consumidor").addClass("is-invalid");
+                        $("#bairro-consumidor").removeClass("is-valid");
+                        $("#bairro-consumidor").addClass("is-invalid");
+                        $("#cidade-consumidor").removeClass("is-valid");
+                        $("#cidade-consumidor").addClass("is-invalid");
+                        $("#estado-consumidor").removeClass("is-valid");
+                        $("#estado-consumidor").addClass("is-invalid");
                     }
                 }
                 else {
                     //CEP sem valor, limpa formulário.
-                    $("#cep").removeClass("is-valid");
-                    $("#logradouro").removeClass("is-valid");
-                    $("#bairro").removeClass("is-valid");
-                    $("#cidade").removeClass("is-valid");
-                    $("#estado").removeClass("is-valid");
-                    $("#cep").removeClass("is-invalid");
-                    $("#logradouro").removeClass("is-invalid");
-                    $("#bairro").removeClass("is-invalid");
-                    $("#cidade").removeClass("is-invalid");
-                    $("#estado").removeClass("is-invalid");
+                    $("#cep-consumidor").removeClass("is-valid");
+                    $("#logradouro-consumidor").removeClass("is-valid");
+                    $("#bairro-consumidor").removeClass("is-valid");
+                    $("#cidade-consumidor").removeClass("is-valid");
+                    $("#estado-consumidor").removeClass("is-valid");
+                    $("#cep-consumidor").removeClass("is-invalid");
+                    $("#logradouro-fornecedor").removeClass("is-invalid");
+                    $("#bairro-consumidor").removeClass("is-invalid");
+                    $("#cidade-consumidor").removeClass("is-invalid");
+                    $("#estado-consumidor").removeClass("is-invalid");
+                    limpa_formulário_cep();
+                }
+            });
+        });
+        
+        //Endereço do Fornecedor
+        $(document).ready(function() {
+
+            // Limpa valores do formulário.
+            function limpa_formulário_cep() {
+                $("#logradouro-fornecedor").val("");
+                $("#bairro-fornecedor").val("");
+                $("#cidade-fornecedor").val("");
+                $("#estado-fornecedor").val("");
+            }
+
+            //Quando o campo CEP perde o foco.
+            $("#cep-fornecedor").blur(function() {
+
+                //Nova variável "CEP" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo CEP possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if(validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#logradouro-fornecedor").val("Preenchendo...");
+                        $("#bairro-fornecedor").val("Preenchendo...");
+                        $("#cidade-fornecedor").val("Preenchendo...");
+                        $("#estado-fornecedor").val("Preenchendo...");
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#cep-fornecedor").removeClass("is-invalid");
+                                $("#cep-fornecedor").addClass("is-valid");
+                                $("#logradouro-fornecedor").removeClass("is-invalid");
+                                $("#logradouro-fornecedor").addClass("is-valid");
+                                $("#logradouro-fornecedor").val(dados.logradouro);
+                                $("#bairro-fornecedor").removeClass("is-invalid");
+                                $("#bairro-fornecedor").addClass("is-valid");
+                                $("#bairro-fornecedor").val(dados.bairro);
+                                $("#cidade-fornecedor").removeClass("is-invalid");
+                                $("#cidade-fornecedor").addClass("is-valid");
+                                $("#cidade-fornecedor").val(dados.localidade);
+                                $("#estado-fornecedor").removeClass("is-invalid");
+                                $("#estado-fornecedor").addClass("is-valid");
+                                $("#estado-fornecedor").val(dados.uf);
+                            } else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                alert("Erro: CEP não encontrado.");
+                                $("#cep-fornecedor").removeClass("is-valid");
+                                $("#cep-fornecedor").addClass("is-invalid");
+                                $("#logradouro-fornecedor").removeClass("is-valid");
+                                $("#logradouro-fornecedor").addClass("is-invalid");
+                                $("#bairro-fornecedor").removeClass("is-valid");
+                                $("#bairro-fornecedor").addClass("is-invalid");
+                                $("#cidade-fornecedor").removeClass("is-valid");
+                                $("#cidade-fornecedor").addClass("is-invalid");
+                                $("#estado-fornecedor").removeClass("is-valid");
+                                $("#estado-fornecedor").addClass("is-invalid");
+                            }
+                        });
+                    } else {
+                        //CEP é inválido.
+                        limpa_formulário_cep();
+                        alert("Erro: Formato de CEP inválido.");
+                        $("#cep-fornecedor").removeClass("is-valid");
+                        $("#cep-fornecedor").addClass("is-invalid");
+                        $("#logradouro-fornecedor").removeClass("is-valid");
+                        $("#logradouro-fornecedor").addClass("is-invalid");
+                        $("#bairro-fornecedor").removeClass("is-valid");
+                        $("#bairro-fornecedor").addClass("is-invalid");
+                        $("#cidade-fornecedor").removeClass("is-valid");
+                        $("#cidade-fornecedor").addClass("is-invalid");
+                        $("#estado-fornecedor").removeClass("is-valid");
+                        $("#estado-fornecedor").addClass("is-invalid");
+                    }
+                } else {
+                    //CEP sem valor, limpa formulário.
+                    $("#cep-fornecedor").removeClass("is-valid");
+                    $("#logradouro-fornecedor").removeClass("is-valid");
+                    $("#bairro-fornecedor").removeClass("is-valid");
+                    $("#cidade-fornecedor").removeClass("is-valid");
+                    $("#estado-fornecedor").removeClass("is-valid");
+                    $("#cep-fornecedor").removeClass("is-invalid");
+                    $("#logradouro-fornecedor").removeClass("is-invalid");
+                    $("#bairro-fornecedor").removeClass("is-invalid");
+                    $("#cidade-fornecedor").removeClass("is-invalid");
+                    $("#estado-fornecedor").removeClass("is-invalid");
                     limpa_formulário_cep();
                 }
             });
@@ -188,22 +288,22 @@
                         <a class="nav-link" data-toggle="tab" href="#fornecedor">Fornecedor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#detalhes">Detalhes</a>
+                        <a class="nav-link disabled" data-toggle="tab" href="#detalhes">Detalhes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#reclamacao">Reclamação</a>
+                        <a class="nav-link disabled" data-toggle="tab" href="#reclamacao">Reclamação</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#anexos">Anexos</a>
+                        <a class="nav-link disabled" data-toggle="tab" href="#anexos">Anexos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#finalizar">Finalizar</a>
+                        <a class="nav-link disabled" data-toggle="tab" href="#finalizar">Finalizar</a>
                     </li>
                 </ul>
                 <!-- Tab Panes -->
                 <div class="tab-content">
                     <!-- Consumidor -->
-                    <div class="tab-pane container active p-3" id="consumidor">                        
+                    <div class="tab-pane container active pt-3 px-0" id="consumidor">                        
                         <form action="">
                             <div class="row">
                                 <!-- Dados -->
@@ -212,6 +312,12 @@
                                         <div class="card-header bg-danger text-white font-weight-bold">Dados do Consumidor<i class="icon far fa-address-card"></i></div>
                                         <div class="card-body">
                                             <form>
+                                                <!-- Titular da Compra? -->
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id='titular' required>
+                                                    <label for="titular" class="form-check-label">Sou titular da compra ou contratação <span class='text-danger'><b>*</b></span></label>                                    
+                                                </div>
+                                                <small id='titular' class="form-text text-muted text-justify pb-2">Apenas o titular da compra ou contratação poderá solicitar uma reclamação na internet. Se você não for o titular desta solicitação, deverá ir a um de nossos postos nos Poupatempos com uma procuração.</small>    
                                                 <!-- Email -->
                                                 <div class="form-group">
                                                     <label for="email">Endereço de Email</label>
@@ -316,32 +422,32 @@
                                             <form>
                                                 <!-- CEP -->
                                                 <div class="form-group">
-                                                    <label for="cep">CEP <span class='text-danger'><b>*</b></span></label>
-                                                    <input name='cep' type="text" aria-describedby="cep" class='form-control' id='cep' required>
-                                                    <small id='cep' class="form-text text-muted">Insira o seu CEP para completar os demais campos.</small>
+                                                    <label for="cep-consumidor">CEP <span class='text-danger'><b>*</b></span></label>
+                                                    <input name='cep-consumidor' type="text" aria-describedby="cep-consumidor" class='form-control' id='cep-consumidor' required>
+                                                    <small id='cep-consumidor' class="form-text text-muted">Insira o seu CEP para completar os demais campos.</small>
                                                 </div>
                                                 <!-- Estado -->
                                                 <div class="form-group">
-                                                    <label for="estado">Estado</label>
-                                                    <input type="text" class='form-control' id='estado' placeholder="Estado" required readonly>
+                                                    <label for="estado-consumidor">Estado</label>
+                                                    <input type="text" class='form-control' id='estado-consumidor' placeholder="Estado" required readonly>
                                                 </div>
                                                 <!-- Cidade -->
                                                 <div class="form-group">
-                                                    <label for="cidade">Cidade</label>
-                                                    <input name='cidade' type="text" class='form-control' id='cidade' placeholder="Cidade" required readonly>
+                                                    <label for="cidade-consumidor">Cidade</label>
+                                                    <input name='cidade-consumidor' type="text" class='form-control' id='cidade-consumidor' placeholder="Cidade" required readonly>
                                                 </div>
                                                 <!-- Bairro -->
                                                 <div class="form-group">
-                                                    <label for="bairro">Bairro</label>
-                                                    <input name='bairro' type="text" class='form-control' id='bairro' placeholder="Bairro" required readonly>
+                                                    <label for="bairro-consumidor">Bairro</label>
+                                                    <input name='bairro-consumidor' type="text" class='form-control' id='bairro-consumidor' placeholder="Bairro" required readonly>
                                                 </div>
                                                 <!-- Logradouro e Número -->
                                                 <div class="row">
                                                     <div class="col-8">
                                                         <!-- Logradouro -->
                                                         <div class="form-group">
-                                                            <label for="logradouro">Logradouro <span class='text-danger'><b>*</b></span></label>
-                                                            <input name='logradouro' type="text" class='form-control' id='logradouro' placeholder="Logradouro" required readonly>
+                                                            <label for="logradouro-consumidor">Logradouro <span class='text-danger'><b>*</b></span></label>
+                                                            <input name='logradouro-consumidor' type="text" class='form-control' id='logradouro-consumidor' placeholder="Logradouro" required readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
@@ -393,14 +499,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 col-lg-6">
-                                    <input type="submit" value="Avançar" onclick="avancar()">
-                                </div>
                             </div>
                         </form>
                     </div>
                     <!-- Fornecedor -->
-                    <div class="tab-pane container p-3" id="fornecedor">
+                    <div class="tab-pane container fade pt-3 px-0" id="fornecedor">
                         <div class="row">
                             <!-- Dados -->
                             <div class="col-12 col-sm-12 col-lg-6">
@@ -409,12 +512,6 @@
                                         Dados do Fornecedor
                                     </div>
                                     <div class="card-body">
-                                        <!-- Titular da Compra? -->
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id='titular' required>
-                                            <label for="titular" class="form-check-label">Sou titular da compra ou contratação.</label>                                    
-                                        </div>
-                                        <small id='titular' class="form-text text-muted text-justify pb-2">Apenas o titular da compra ou contratação, poderá solicitar uma reclamação na internet. Se você não for o titular desta solicitação, deverá ir a um de nossos postos nos Poupatempos com uma procuração.</small>                        
                                         <!-- Classificação -->
                                         <div class="form-group">
                                             <label for="classificacao">Classificação <span class='text-danger'><b>*</b></span></label>
@@ -478,32 +575,32 @@
                                         <form>
                                             <!-- CEP -->
                                             <div class="form-group">
-                                                <label for="cep">CEP <span class='text-danger'><b>*</b></span></label>
-                                                <input name='cep' type="text" aria-describedby="cep" class='form-control' id='cep' required>
-                                                <small id='cep' class="form-text text-muted">Insira o seu CEP para completar os demais campos.</small>
+                                                <label for="cep-fornecedor">CEP <span class='text-danger'><b>*</b></span></label>
+                                                <input name='cep-fornecedor' type="text" aria-describedby="cep-fornecedor" class='form-control' id='cep-fornecedor' required>
+                                                <small id='cep-fornecedor' class="form-text text-muted">Insira o seu CEP para completar os demais campos.</small>
                                             </div>
                                             <!-- Estado -->
                                             <div class="form-group">
-                                                <label for="estado">Estado</label>
-                                                <input type="text" class='form-control' id='estado' placeholder="Estado" required readonly>
+                                                <label for="estado-fornecedor">Estado</label>
+                                                <input type="text" class='form-control' id='estado-fornecedor' placeholder="Estado" required readonly>
                                             </div>
                                             <!-- Cidade -->
                                             <div class="form-group">
-                                                <label for="cidade">Cidade</label>
-                                                <input name='cidade' type="text" class='form-control' id='cidade' placeholder="Cidade" required readonly>
+                                                <label for="cidade-fornecedor">Cidade</label>
+                                                <input name='cidade-fornecedor' type="text" class='form-control' id='cidade-fornecedor' placeholder="Cidade" required readonly>
                                             </div>
                                             <!-- Bairro -->
                                             <div class="form-group">
-                                                <label for="bairro">Bairro</label>
-                                                <input name='bairro' type="text" class='form-control' id='bairro' placeholder="Bairro" required readonly>
+                                                <label for="bairro-fornecedor">Bairro</label>
+                                                <input name='bairro-fornecedor' type="text" class='form-control' id='bairro-fornecedor' placeholder="Bairro" required readonly>
                                             </div>
                                             <!-- Logradouro e Número -->
                                             <div class="row">
                                                 <div class="col-8">
                                                     <!-- Logradouro -->
                                                     <div class="form-group">
-                                                        <label for="logradouro">Logradouro <span class='text-danger'><b>*</b></span></label>
-                                                        <input name='logradouro' type="text" class='form-control' id='logradouro' placeholder="Logradouro" required readonly>
+                                                        <label for="logradouro-fornecedor">Logradouro <span class='text-danger'><b>*</b></span></label>
+                                                        <input name='logradouro-fornecedor' type="text" class='form-control' id='logradouro-fornecedor' placeholder="Logradouro" required readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
@@ -543,13 +640,13 @@
                         </div>                                
                     </div>
                     <!-- Detalhes -->
-                    <div class="tab-pane container fade" id="detalhes"></div>
+                    <div class="tab-pane container fade pt-3 px-0" id="detalhes"></div>
                     <!-- Reclamação -->
-                    <div class="tab-pane container fade" id="reclamacao"></div>
+                    <div class="tab-pane container fade pt-3 px-0" id="reclamacao"></div>
                     <!-- Anexos -->
-                    <div class="tab-pane container fade" id="anexos"></div>
+                    <div class="tab-pane container fade pt-3 px-0" id="anexos"></div>
                     <!-- Finalizar -->
-                    <div class="tab-pane container fade" id="finalizar"></div>
+                    <div class="tab-pane container fade pt-3 px-0" id="finalizar"></div>
                 </div>
             </div>
         </div>
