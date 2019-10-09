@@ -18,16 +18,16 @@ async function loadTableData(query) {
         });
         $.each(data.cesta_barata.items, function (aux_key, aux_value) {
             $.each(data.cesta_barata.items[aux_key], function (key, value) {
-                makeCards('#cardsArea', value);
+                makeCards('#cardsCestaArea', value);
             });
         });
     })
 }
 function makeDisplay(displayName, value) {
     let tag = `
-    <div class=''>
-        <h4 class='mt-4'>R$${value.preco}</h4>
-        <span>${value.nome_fornecedor}</span>
+    <div class='rank-item'>
+        <h4 class='mt-4'>${value.nome_fornecedor}</h4>
+        <h5>R$${value.preco}</h5>
     </div>
 `
     $(displayName).append(tag);
@@ -39,7 +39,7 @@ function makeTable(tableName, value) {
 
 function makeCards(cardsArea, value) {
     let tag = `<div>
-    <div class="card cardces mb-1 shadow-sm">
+    <div class="card cardces mb-2 shadow-sm">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="card-name">
