@@ -21,6 +21,8 @@
     <!-- Required Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Procon - Reclamação</title>
@@ -235,6 +237,13 @@
         });
     </script>
 
+    <!-- Abrir Modal -->
+    <script type="text/javascript">
+        $(function(){
+            $('#modalExemplo').modal('show');
+        });
+    </script>
+
     <!-- CSS -->
     <style>
         .icon {
@@ -269,10 +278,45 @@
         .form-control.is-valid, .was-validated .form-control:valid, .form-control.is-invalid, .was-validated .form-control:invalid{
             background-image:none!important
         }
+
+        .nav-tabs .nav-link{
+            border-color: #dee2e6 !important
+        }
+
+        .nav-tabs .nav-link.active{
+            border-color: #dee2e6 #dee2e6 #fff !important;
+            font-weight: bold;
+        }
+
     </style>
 </head>
     
 <body>
+      
+    <!-- Modal -->
+    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação de Titular</h5>
+                </div>
+                <form>
+                    <div class="modal-body">            
+                        <!-- Titular da Compra? -->
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id='titular' required>
+                            <label for="titular" class="form-check-label">Sou titular da compra ou contratação <span class='text-danger'><b>*</b></span></label>                                    
+                        </div>
+                        <small id='titular' class="form-text text-muted text-justify pb-2">Apenas o titular da compra ou contratação poderá solicitar uma reclamação na internet. Se você não for o titular desta solicitação, deverá ir a um de nossos postos nos Poupatempos com uma procuração.</small>    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Continuar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="container justify-content-center p-0">
         <div class="card">
             <div class="card-header text-white text-center bg-dark font-weight-bold">
@@ -281,43 +325,37 @@
             <div class="card-body">
                 <!-- Nav Tabs -->
                 <ul class="nav nav-tabs">
-                    <li class="nav-item">
+                    <li class="nav-item px-1">
                         <a class="nav-link active" data-toggle="tab" href="#consumidor">Consumidor</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item px-1">
                         <a class="nav-link" data-toggle="tab" href="#fornecedor">Fornecedor</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" data-toggle="tab" href="#detalhes">Detalhes</a>
+                    <li class="nav-item px-1">
+                        <a class="nav-link" data-toggle="tab" href="#detalhes">Detalhes</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" data-toggle="tab" href="#reclamacao">Reclamação</a>
+                    <li class="nav-item px-1">
+                        <a class="nav-link" data-toggle="tab" href="#reclamacao">Reclamação</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item px-1">
                         <a class="nav-link disabled" data-toggle="tab" href="#anexos">Anexos</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item px-1">
                         <a class="nav-link disabled" data-toggle="tab" href="#finalizar">Finalizar</a>
                     </li>
                 </ul>
                 <!-- Tab Panes -->
                 <div class="tab-content">
                     <!-- Consumidor -->
-                    <div class="tab-pane container active pt-3 px-0" id="consumidor">                        
-                        <form action="">
+                    <div class="tab-pane container active pt-3 px-0" id="consumidor">
+                        <form>
                             <div class="row">
-                                <!-- Dados -->
-                                <div class="col-12 col-sm-12 col-lg-6">
-                                    <div class="card mb-2">
-                                        <div class="card-header bg-danger text-white font-weight-bold">Dados do Consumidor<i class="icon far fa-address-card"></i></div>
-                                        <div class="card-body">
-                                            <form>
-                                                <!-- Titular da Compra? -->
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id='titular' required>
-                                                    <label for="titular" class="form-check-label">Sou titular da compra ou contratação <span class='text-danger'><b>*</b></span></label>                                    
-                                                </div>
-                                                <small id='titular' class="form-text text-muted text-justify pb-2">Apenas o titular da compra ou contratação poderá solicitar uma reclamação na internet. Se você não for o titular desta solicitação, deverá ir a um de nossos postos nos Poupatempos com uma procuração.</small>    
+                                <form>
+                                    <!-- Dados -->
+                                    <div class="col-12 col-sm-12 col-lg-6">
+                                        <div class="card mb-2">
+                                            <div class="card-header bg-danger text-white font-weight-bold">Dados do Consumidor<i class="icon far fa-address-card"></i></div>
+                                            <div class="card-body">
                                                 <!-- Email -->
                                                 <div class="form-group">
                                                     <label for="email">Endereço de Email</label>
@@ -407,19 +445,15 @@
                                                     <input type="checkbox" class="form-check-input" id='deficiencia'>
                                                     <label for="deficiencia" class="form-check-label">Possui deficiência?</label>
                                                 </div>
-                                                <!-- Tipo de Deficiência -->
-            
-                                            </form>
+                                                <!-- Tipo de Deficiência -->                                               
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Endereço e Resposta-->
-                                <div class="col-12 col-sm-12 col-lg-6">
-                                    <div class="card mb-2">
-                                        <div class="card-header bg-primary text-white font-weight-bold">Endereço do Consumidor<i
-                                                class="icon fas fa-map-marker-alt"></i></div>
-                                        <div class="card-body">
-                                            <form>
+                                    <!-- Endereço e Resposta-->
+                                    <div class="col-12 col-sm-12 col-lg-6">
+                                        <div class="card mb-2">
+                                            <div class="card-header bg-primary text-white font-weight-bold">Endereço do Consumidor<i class="icon fas fa-map-marker-alt"></i></div>
+                                            <div class="card-body">
                                                 <!-- CEP -->
                                                 <div class="form-group">
                                                     <label for="cep-consumidor">CEP <span class='text-danger'><b>*</b></span></label>
@@ -428,17 +462,17 @@
                                                 </div>
                                                 <!-- Estado -->
                                                 <div class="form-group">
-                                                    <label for="estado-consumidor">Estado</label>
+                                                    <label for="estado-consumidor">Estado <span class='text-danger'><b>*</b></span></label>
                                                     <input type="text" class='form-control' id='estado-consumidor' placeholder="Estado" required readonly>
                                                 </div>
                                                 <!-- Cidade -->
                                                 <div class="form-group">
-                                                    <label for="cidade-consumidor">Cidade</label>
+                                                    <label for="cidade-consumidor">Cidade <span class='text-danger'><b>*</b></span></label>
                                                     <input name='cidade-consumidor' type="text" class='form-control' id='cidade-consumidor' placeholder="Cidade" required readonly>
                                                 </div>
                                                 <!-- Bairro -->
                                                 <div class="form-group">
-                                                    <label for="bairro-consumidor">Bairro</label>
+                                                    <label for="bairro-consumidor">Bairro <span class='text-danger'><b>*</b></span></label>
                                                     <input name='bairro-consumidor' type="text" class='form-control' id='bairro-consumidor' placeholder="Bairro" required readonly>
                                                 </div>
                                                 <!-- Logradouro e Número -->
@@ -453,7 +487,7 @@
                                                     <div class="col-4">
                                                         <!-- Número da Casa -->
                                                         <div class="form-group">
-                                                            <label for="numero">Número</label>
+                                                            <label for="numero">Número <span class='text-danger'><b>*</b></span></label>
                                                             <input type="number" class='form-control' id='numero' required>
                                                         </div>
                                                     </div>
@@ -461,7 +495,7 @@
                                                 <!-- Complemento -->
                                                 <div class="form-group">
                                                     <label for="complemento">Complemento</label>
-                                                    <input type="text" class='form-control' id='complemento' required>
+                                                    <input type="text" class='form-control' id='complemento'>
                                                 </div>
                                                 <!-- Telefones -->
                                                 <div class="row">
@@ -480,25 +514,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header bg-success text-white font-weight-bold">Sua Resposta<i
-                                                class="icon fas fa-bell"></i></div>
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                <label for="notificacao">Tipo da Notificação <span
-                                                        class='text-danger'><b>*</b></span></label>
-                                                <select id="notificacao" class="form-control" required>
-                                                    <option selected disabled>Selecione uma opção</option>
-                                                    <option>Email</option>
-                                                </select>
-                                                <small id='notificacao' class="form-text text-muted">Escolha a forma que deseja receber a resposta da sua reclamação.</small>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </form>
                     </div>
@@ -509,7 +528,7 @@
                             <div class="col-12 col-sm-12 col-lg-6">
                                 <div class="card">
                                     <div class="card-header bg-danger text-white font-weight-bold">
-                                        Dados do Fornecedor
+                                        Dados do Fornecedor<i class="icon fas fa-map-marker-alt"></i>
                                     </div>
                                     <div class="card-body">
                                         <!-- Classificação -->
@@ -570,7 +589,9 @@
                             <!-- Endereço-->
                             <div class="col-12 col-sm-12 col-lg-6">
                                 <div class="card mb-2">
-                                    <div class="card-header bg-primary text-white font-weight-bold">Endereço do Fornecedor<i class="icon fas fa-map-marker-alt"></i></div>
+                                    <div class="card-header bg-primary text-white font-weight-bold">
+                                        Endereço do Fornecedor<i class="icon fas fa-map-marker-alt"></i>
+                                    </div>
                                     <div class="card-body">
                                         <form>
                                             <!-- CEP -->
@@ -581,17 +602,17 @@
                                             </div>
                                             <!-- Estado -->
                                             <div class="form-group">
-                                                <label for="estado-fornecedor">Estado</label>
+                                                <label for="estado-fornecedor">Estado <span class='text-danger'><b>*</b></span></label>
                                                 <input type="text" class='form-control' id='estado-fornecedor' placeholder="Estado" required readonly>
                                             </div>
                                             <!-- Cidade -->
                                             <div class="form-group">
-                                                <label for="cidade-fornecedor">Cidade</label>
+                                                <label for="cidade-fornecedor">Cidade <span class='text-danger'><b>*</b></span></label>
                                                 <input name='cidade-fornecedor' type="text" class='form-control' id='cidade-fornecedor' placeholder="Cidade" required readonly>
                                             </div>
                                             <!-- Bairro -->
                                             <div class="form-group">
-                                                <label for="bairro-fornecedor">Bairro</label>
+                                                <label for="bairro-fornecedor">Bairro <span class='text-danger'><b>*</b></span></label>
                                                 <input name='bairro-fornecedor' type="text" class='form-control' id='bairro-fornecedor' placeholder="Bairro" required readonly>
                                             </div>
                                             <!-- Logradouro e Número -->
@@ -606,7 +627,7 @@
                                                 <div class="col-4">
                                                     <!-- Número da Casa -->
                                                     <div class="form-group">
-                                                        <label for="numero">Número</label>
+                                                        <label for="numero">Número <span class='text-danger'><b>*</b></span></label>
                                                         <input type="number" class='form-control' id='numero' required>
                                                     </div>
                                                 </div>
@@ -640,11 +661,63 @@
                         </div>                                
                     </div>
                     <!-- Detalhes -->
-                    <div class="tab-pane container fade pt-3 px-0" id="detalhes"></div>
+                    <div class="tab-pane container fade pt-3 px-0" id="detalhes">
+                        <div class="row">
+                            <!-- Dados -->
+                            <div class="col-12 col-sm-12 col-lg-12">
+                                <div class="card mb-2">
+                                    <div class="card-header bg-danger text-white font-weight-bold">Dados da Compra ou Contratação<i class="icon far fa-address-card"></i></div>
+                                    <div class="card-body">
+                                        <!-- "Procurei o fornecedor" -->
+                                        <div class="form-check pb-2">
+                                            <input type="checkbox" id='procurei' class="form-check-input">
+                                            <label for="procurei" class="form-check-label">Procurei o fornecedor para solucionar a questão.</label>                                    
+                                        </div>
+                                        <!-- Data da Ocorrência -->
+                                        <div class="form-group">
+                                            <label for="dataOcorrencia">Data da Ocorrência <span class='text-danger'><b>*</b></span></label>
+                                            <input type="date" class='form-control' id='dataOcorrencia' required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Reclamação -->
-                    <div class="tab-pane container fade pt-3 px-0" id="reclamacao"></div>
+                    <div class="tab-pane container fade pt-3 px-0" id="reclamacao">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-lg-12">
+                                <div class="card mb-2">
+                                    <div class="card-header bg-danger text-white font-weight-bold"><i class="icon far fa-address-card"></i></div>
+                                    <div class="card-body">
+                                        <!-- Detalhes -->
+                                        <div class="form-group">
+                                            <label for="detalhes">Descreva em detalhes sua reclamação <span class='text-danger'><b>*</b></span></label>
+                                            <textarea name='detalhes' class="form-control" id="detalhes" rows="7" maxlength="2000" required></textarea>
+                                            <small class="caracteres"></small>
+                                        </div>
+                                        <!-- Pedido -->
+                                        <div class="form-group">
+                                            <label for="pedido">Pedido <span class='text-danger'><b>*</b></span></label>
+                                            <select id="pedido" class="form-control" required>
+                                                <option selected disabled></option>
+                                                <option>Abatimento/Reembolso de valores cobrados indevidamente (serviços, taxas, etc.)</option>
+                                                <option>Cancelamento/Revisão (contrato/multa) e devolução do valor pago indevidamente</option>
+                                                <option>Disponibilização/restabelecimento imediato do serviço</option>
+                                                <option>Indenização por danos decorrentes da má prestação do serviço (queima de aparelho, perda de alimentos, vazamento da rede de água/gás, etc.)</option>
+                                                <option>Revisão das faturas e devolução dos valores pagos pelo período em que o serviço esteve indisponível</option>
+                                                <option>Outros (exceto indenização por danos morais, que só podem ser solicitados por meio de ação judicial)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Anexos -->
-                    <div class="tab-pane container fade pt-3 px-0" id="anexos"></div>
+                    <div class="tab-pane container fade pt-3 px-0" id="anexos">
+
+                    </div>
                     <!-- Finalizar -->
                     <div class="tab-pane container fade pt-3 px-0" id="finalizar"></div>
                 </div>
@@ -663,6 +736,23 @@
     <script src="../vendor/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Contador de Caracteres -->
+    <script>
+        $(document).on("input", "#detalhes", function() {
+        var limite = 2000;
+        var informativo = "caracteres restantes.";
+        var caracteresDigitados = $(this).val().length;
+        var caracteresRestantes = limite - caracteresDigitados;
+
+        if (caracteresRestantes <= 0) {
+            var detalhes = $("textarea[name=detalhes]").val();
+            $("textarea[name=detalhes]").val(detalhes.substr(0, limite));
+            $(".caracteres").text("0 " + informativo);
+        } else {
+            $(".caracteres").text(caracteresRestantes + " " + informativo);
+        }
+    });
+    </script>
 </body>
 
 </html>
