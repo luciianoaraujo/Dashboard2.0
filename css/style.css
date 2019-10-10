@@ -128,3 +128,9 @@ tbody tr:hover {
     box-shadow: 0 0 5px #777;
     border-radius: 0 0em 1em 1em;
 }
+
+@media only screen and (max-width: 600px) {
+    h1{
+        font-size: 3em;
+    }
+  }

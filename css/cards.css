@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans|Open+Sans+Condensed:300&display=swap");
 
-#topContent small {
+ small {
   color: greenyellow;
   margin-bottom: 0.75rem;
 }
@@ -21,7 +21,6 @@
 
 .card {
   background: #247cc6;
-  
   border-radius: 5rem;
   padding: 1em;
   margin: 0;
@@ -33,6 +32,8 @@
   color: #fff;
   -webkit-transform: scale(0.95);
   transform: scale(0.95);
+  width: 100%;
+  min-height: 180px;
 }
 .card:hover {
 	-webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
