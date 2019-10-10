@@ -34,7 +34,7 @@ async function loadTableData(query) {
                         i = 0;
                         qtd_cards++;
                     }
-            if (qtd_cards <= 3)
+            if (qtd_cards <= 6)
                 makeCards('#cardsArea', value);
         });
         makeCharts(diesel, gasolina, etanol);
