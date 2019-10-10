@@ -20,7 +20,8 @@
 }
 
 .card {
-background: #247cc6;
+  
+  background: #247cc6;
   border-radius: 5rem;
   padding: 1em;
   margin: 0;
@@ -89,15 +90,11 @@ background: #247cc6;
     overflow-y: hidden;
     white-space: nowrap;
   }
-      
+  .scrolling-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
   .card2 {
     display: inline-block;
-  }
-  
-  .card2 {
-    border: 2px solid $red;
-    width: 150px;
-    height: 75px;
-    background: black;
   }
   

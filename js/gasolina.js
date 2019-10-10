@@ -16,39 +16,40 @@ async function loadTableData(query) {
     let etanol = [];
     return await $.get(url, (data) => {
         $.each(data, function (key, value) {
-            if (i == 0) {
+            if (value.nome === 'Diesel') {
                 diesel.push(value);
                 makeTable('#tabelaDiesel', value);
-                i++;
+                i = 3;
                 qtd_cards++;
             } else
-                if (i == 1) {
+                if (value.nome == 'Etanol') {
                     etanol.push(value);
                     makeTable('#tabelaEtanol', value);
-                    i++;
+                    i = 6;
                     qtd_cards++;
                 } else
-                    if (i == 2) {
+                    if (value.nome == 'Gasolina') {
                         gasolina.push(value);
                         makeTable('#tabelaGasolina', value);
                         i = 0;
                         qtd_cards++;
                     }
-            if (qtd_cards <= 6)
+            if (qtd_cards <= 9)
                 makeCards('#cardsArea', value);
         });
+        
         makeCharts(diesel, gasolina, etanol);
         selecionarCombustivel('#escolha',gasolina[0], etanol[0]);
     })
 }
 function makeTable(tableName, value) {
-    let tag = `<tr><td>${value.fornecedor}</td><td>${value.data}</td><td>${value.preco}</td></tr>`;
+    let tag = `<tr><td>${value.nome}</td><td>${value.fornecedor}</td><td>${value.data}</td><td>${value.preco}</td></tr>`;
     $(tableName).append(tag);
 }
 
 function makeCards(cardsArea, value) {
     let tag = `
-<div class="col">
+<div class="card2">
 <div class="card mb-4 cardcom" id='${value.nome}Card'>
     <div class="card-body">
         <div class="d-flex justify-content-between align-items-top">
@@ -152,13 +153,13 @@ async function makeCharts(diesel, gasolina, etanol) {
     var die = document.getElementById('chartDie').getContext('2d');
 
     var myChart = new Chart(die, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: chartD.data,
             datasets: [{
                 label: 'Diesel',
                 data: chartD.preco,
-                backgroundColor: 'rgba(25, 64, 222, 0.65)',
+                backgroundColor: 'rgba(36, 124, 198, 0.85)',
             }
             ]
         },
@@ -167,20 +168,20 @@ async function makeCharts(diesel, gasolina, etanol) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: false,
-                        stepSize: 0.05
+                        stepSize: 0.5
                     }
                 }]
             }
         }
     });
     var myChart = new Chart(eta, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: chartE.data,
             datasets: [{
                 label: 'Etanol',
                 data: chartE.preco,
-                backgroundColor: 'rgba(25, 64, 222, 0.65)',
+                backgroundColor: 'rgba(36, 124, 198, 0.85)',
             }
             ]
         },
@@ -189,20 +190,20 @@ async function makeCharts(diesel, gasolina, etanol) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: false,
-                        stepSize: 0.05
+                        stepSize: 0.5
                     }
                 }]
             }
         }
     });
     var myChart = new Chart(gas, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: chartG.data,
             datasets: [{
                 label: 'Gasolina',
                 data: chartG.preco,
-                backgroundColor: 'rgba(25, 64, 222, 0.65)',
+                backgroundColor: 'rgba(36, 124, 198, 0.85)',
             }
             ]
         },
@@ -211,7 +212,7 @@ async function makeCharts(diesel, gasolina, etanol) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: false,
-                        stepSize: 0.05
+                        stepSize: 0.5
                     }
                 }]
             }
@@ -220,6 +221,7 @@ async function makeCharts(diesel, gasolina, etanol) {
 }
 
 function selecionarCombustivel(escolha, gasolina, etanol) {
+    console.log(gasolina.preco)
     let porcentagem = parseFloat(etanol.preco) / parseFloat(gasolina.preco);
     let tag;
 
@@ -239,8 +241,5 @@ function selecionarCombustivel(escolha, gasolina, etanol) {
         $(`#${gasolina.nome}Card`).addClass('menor-preco');
     }
 
-    console.log(porcentagem);
-
     $(escolha).append(tag);
-
 }

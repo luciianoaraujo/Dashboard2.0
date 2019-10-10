@@ -20,14 +20,14 @@ module.exports = {
             let dataPesquisa = pesquisa.data_publicacao;
             pesquisa.items.forEach(item => {
                 let itemLocal = new Item();
-                if (item.produto_id == 7 || item.produto_id == 8 || item.produto_id == 13) {
+                
                     itemLocal.nome = item.nome_produto;
                     itemLocal.fornecedor = item.indices['fornecedor_menor'];
                     itemLocal.preco = item.indices['menor_preco'];
                     itemLocal.data = dataPesquisa;
                     itemLocal.diferenca_menor_maior = item.indices['diferenca_menor_maior'];
                     vetorDeItems.push(itemLocal);
-                }
+                
             });
         });
 
