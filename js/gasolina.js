@@ -211,7 +211,7 @@ async function makeCharts(diesel, gasolina, etanol) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: false,
-                        stepSize: 0.01
+                        stepSize: 0.05
                     }
                 }]
             }
@@ -227,14 +227,14 @@ function selecionarCombustivel(escolha, gasolina, etanol) {
         tag = `
         <i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b style="
         color: rgb(255, 196, 0);
-    ">ETANOL ${porcentagem.toFixed(2)*100}%</b>
+    ">ETANOL ${porcentagem.toFixed(2)*100}%</b> mais barato!
         `;
         $(`#${etanol.nome}Card`).addClass('menor-preco');
     } else {
         tag = `
         <i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b style="
         color: rgb(255, 196, 0);
-    ">GASOLINA ${porcentagem.toFixed(2)*100}%</b>
+    ">GASOLINA ${porcentagem.toFixed(2)*100}%</b> mais barato!
         `;
         $(`#${gasolina.nome}Card`).addClass('menor-preco');
     }
