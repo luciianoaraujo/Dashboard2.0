@@ -43,7 +43,7 @@ async function loadTableData(query) {
     })
 }
 function makeTable(tableName, value) {
-    let tag = `<tr><td>${value.nome}</td><td>${value.fornecedor}</td><td>${value.data}</td><td>${value.preco}</td></tr>`;
+    let tag = `<tr><td>${value.fornecedor}</td><td>${value.data}</td><td>${value.preco}</td></tr>`;
     $(tableName).append(tag);
 }
 
