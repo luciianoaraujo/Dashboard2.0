@@ -21,9 +21,9 @@ module.exports = {
 
         const vetorDeItems = [];
         const pesquisa_total = response.data.pesquisa_total[0];
+        let count = 0;
         for(const pesquisa of pesquisa_total.pesquisas){
             let dataPesquisa = pesquisa.data_publicacao;
-            let count = 0;
             for(const item of pesquisa.items){
                 let itemLocal = new Item();
 
@@ -38,13 +38,13 @@ module.exports = {
                     count++;
             }
         }
-        let count = 0;
+        let count2 = 0;
         vetorDeItems.forEach((item) => {
             AddCords(item).then((cords) => {
-                count++;
+                count2++;
                 item.latitude = cords[0];
                 item.longitude = cords[1];
-                if(count==vetorDeItems.length){
+                if(count2==vetorDeItems.length){
                     console.log('Loop acabou');
                     console.log(vetorDeItems);
                     return (res.json(vetorDeItems));
