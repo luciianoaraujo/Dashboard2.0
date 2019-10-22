@@ -7,6 +7,11 @@ $('#escolha').on('click', (e) => {
         
 })
 
+async function loadMapData(id){
+    var url = `http://itajuba.myscriptcase.com/scriptcase/devel/conf/grp/Procon/libraries/php/fornecedor_detalhe.php?id=${id}`
+    console.log(url);
+}
+
 async function loadTableData(query) {
     var url = `http://localhost:3333/${query}`;
     let i = 0;
@@ -48,6 +53,9 @@ function makeTable(tableName, value) {
 }
 
 function makeCards(cardsArea, value) {
+    let fornecedorId = value.fornecedorId;
+    let latitude = value.latitude;
+    let longitude = value.longitude;
     let tag = `
 <div class="card2">
 <div class="card mb-4 cardcom" id='${value.nome}Card'>
@@ -79,7 +87,6 @@ function makeCards(cardsArea, value) {
     </div>
 </div>
 </div>
-<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog  modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -90,15 +97,12 @@ function makeCards(cardsArea, value) {
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12 modal_body_content">
-            <p>Some contents...</p>
+            <p>Latitude: ${latitude}</p>
+            <p>Longitude: ${longitude}</p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 modal_body_map">
-            <div class="location-map" id="location-map">
-              <div style="width: 600px; height: 400px;" id="map_canvas"></div>
-            </div>
-          </div>
+        <div class="row" style="height:500px">
+          <div id="map${value.id}"></div>
         </div>
         <div class="row">
           <div class="col-md-12 modal_body_end">
@@ -110,7 +114,16 @@ function makeCards(cardsArea, value) {
   </div>
 </div>
 `
-    $(cardsArea).append(tag);
+    $(cardsArea).append(tag)
+    let map;
+    let id = `map${value.id}`;
+    console.log(id);
+      function initMap() {
+        map = new google.maps.Map(document.getElementById(id), {
+          center: {lat: value.latitude, lng: value.longitude},
+          zoom: 8
+        });
+      }
 }
 
 
