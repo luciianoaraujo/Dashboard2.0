@@ -6,6 +6,12 @@ $('#escolha').on('click', (e) => {
     $('#escolhaInfo').toggleClass('hide');
         
 })
+let scriptString = `
+    function drawMap() {    
+        var mapOptions = {
+          zoom: 13,
+         }
+     `;
 
 async function loadMapData(id){
     var url = `http://itajuba.myscriptcase.com/scriptcase/devel/conf/grp/Procon/libraries/php/fornecedor_detalhe.php?id=${id}`
@@ -78,7 +84,7 @@ function makeCards(cardsArea, value) {
                 </div>
                 <div class="col-4">
                     <button type="button" class="btn btn-outline-light" 
-                    data-toggle="modal" data-target="#myModal" data-lat='10.85' data-lng='106.62'>
+                    data-toggle="modal" data-target="#myModal${value.id}" data-lat='10.85' data-lng='106.62'>
                         <i class="fas fa-map-marked-alt"></i>
                     </button>
                 </div>
@@ -87,7 +93,7 @@ function makeCards(cardsArea, value) {
     </div>
 </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal${value.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog  modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -97,12 +103,13 @@ function makeCards(cardsArea, value) {
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12 modal_body_content">
+            <p>Latitude: ${value.id}</p>
             <p>Latitude: ${latitude}</p>
             <p>Longitude: ${longitude}</p>
           </div>
         </div>
-        <div class="row" style="height:500px">
-          <div id="map${value.id}"></div>
+        <div class="row">
+          <div id="map${value.id}" style="height:500px; width:100%"></div>
         </div>
         <div class="row">
           <div class="col-md-12 modal_body_end">
@@ -113,17 +120,29 @@ function makeCards(cardsArea, value) {
     </div>
   </div>
 </div>
-`
+`;
+scriptString = scriptString+`
+    mapOptions.center = new google.maps.LatLng(${value.latitude}, ${value.longitude});
+    map${value.id} = new google.maps.Map(document.getElementById("map${value.id}"), mapOptions);
+`;
+if(value.id==24){
+    scriptString = scriptString+`}
+    `;
+
+    console.log(scriptString);
+
+    var googleMapsScript = document.createElement('script');
+    scriptString = document.createTextNode(scriptString);
+    googleMapsScript.appendChild(scriptString);
+    document.body.appendChild(googleMapsScript);
+
+    var my_awesome_script = document.createElement('script');
+    my_awesome_script.setAttribute('src',`https://maps.googleapis.com/maps/api/js?key=AIzaSyDhSb...pjtpV6vtK8&callback=drawMap`);
+    document.body.appendChild(my_awesome_script);
+
+}
+
     $(cardsArea).append(tag)
-    let map;
-    let id = `map${value.id}`;
-    console.log(id);
-      function initMap() {
-        map = new google.maps.Map(document.getElementById(id), {
-          center: {lat: value.latitude, lng: value.longitude},
-          zoom: 8
-        });
-      }
 }
 
 
