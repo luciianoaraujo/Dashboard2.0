@@ -14,6 +14,11 @@
             https://prnt.sc/pbv0b0
     -->
 
+
+<!-- 
+    Autocomplete com as informações do usuário
+    Máscara para o CPF
+--> 
 <!DOCTYPE html>
 <html lang="en">
     
@@ -237,6 +242,44 @@
         });
     </script>
 
+    <!-- <script>
+        // http://itajuba.myscriptcase.com/scriptcase/devel/conf/grp/Procon/libraries/php/fornecedor_detalhe.php?id=44
+        $(document).ready(function() {
+            function limpa_formulário() {
+                $("#idEmpresa").val("");
+                $("#nomeEmpresa").val("");
+            }
+
+            $("#idEmpresa").blur(function() {
+                var id = $(this).val().replace(/\D/g, '');
+                if (id != "") {
+                
+                    $("#nomeEmpresa").val("Preenchendo...");
+                    
+
+                    $.getJSON("http://itajuba.myscriptcase.com/scriptcase/devel/conf/grp/Procon/libraries/php/fornecedor_detalhe.php?id="+ id, function(data) {
+
+                        if (!("erro" in data)) {
+
+                            var dados = JSON.parse(data);
+
+                            $("#nomeEmpresa").val(dados.fornecedor_detalhe);
+
+                        } else {
+
+                            limpa_formulário();
+
+                            alert("Erro: ID não encontrado.");
+                        }
+                    });
+                } else {
+                    limpa_formulário();
+                }
+            });
+
+        });
+    </script> -->
+
     <!-- Abrir Modal -->
     <script type="text/javascript">
         $(function(){
@@ -324,26 +367,18 @@
             </div>
             <div class="card-body">
                 <!-- Nav Tabs -->
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs justify-content-center">
                     <li class="nav-item px-1">
-                        <a class="nav-link active" data-toggle="tab" href="#consumidor">Consumidor</a>
+                        <a class="nav-link active" data-toggle="tab" href="#consumidor"><i class="fas fa-user"></i></a>
                     </li>
                     <li class="nav-item px-1">
-                        <a class="nav-link" data-toggle="tab" href="#fornecedor">Fornecedor</a>
+                        <a class="nav-link" data-toggle="tab" href="#fornecedor"><i class="fas fa-store"></i></a>
                     </li>
                     <li class="nav-item px-1">
-                        <a class="nav-link" data-toggle="tab" href="#detalhes">Detalhes</a>
-                    </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link" data-toggle="tab" href="#reclamacao">Reclamação</a>
-                    </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link disabled" data-toggle="tab" href="#anexos">Anexos</a>
-                    </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link disabled" data-toggle="tab" href="#finalizar">Finalizar</a>
+                        <a class="nav-link" data-toggle="tab" href="#detalhes"><i class="far fa-edit"></i></a>
                     </li>
                 </ul>
+
                 <!-- Tab Panes -->
                 <div class="tab-content">
                     <!-- Consumidor -->
@@ -359,7 +394,7 @@
                                                 <!-- Email -->
                                                 <div class="form-group">
                                                     <label for="email">Endereço de Email</label>
-                                                    <input type="email" class="form-control" id='email' aria-describedby="emailHelp" value="exemplo@gmail.com" readonly>                                        
+                                                    <input type="email" class="form-control" id='email' aria-describedby="emailHelp" value="exemplo@gmail.com" readonly>
                                                 </div>
                                                 <!-- Nome Completo -->
                                                 <div class="form-group">
@@ -415,7 +450,33 @@
                                                             <select id="ufEmissao" class="form-control"
                                                                 aria-describedby="ufEmissao">
                                                                 <option selected disabled></option>
-                                                                <!-- Inserção de Estados -->
+                                                                <option value="AC">Acre</option>
+                                                                <option value="AL">Alagoas</option>
+                                                                <option value="AP">Amapá</option>
+                                                                <option value="AM">Amazonas</option>
+                                                                <option value="BA">Bahia</option>
+                                                                <option value="CE">Ceará</option>
+                                                                <option value="DF">Distrito Federal</option>
+                                                                <option value="ES">Espirito Santo</option>
+                                                                <option value="GO">Goiás</option>
+                                                                <option value="MA">Maranhão</option>
+                                                                <option value="MS">Mato Grosso do Sul</option>
+                                                                <option value="MT">Mato Grosso</option>
+                                                                <option value="MG">Minas Gerais</option>
+                                                                <option value="PA">Pará</option>
+                                                                <option value="PB">Paraíba</option>
+                                                                <option value="PR">Paraná</option>
+                                                                <option value="PE">Pernambuco</option>
+                                                                <option value="PI">Piauí</option>
+                                                                <option value="RJ">Rio de Janeiro</option>
+                                                                <option value="RN">Rio Grande do Norte</option>
+                                                                <option value="RS">Rio Grande do Sul</option>
+                                                                <option value="RO">Rondônia</option>
+                                                                <option value="RR">Roraima</option>
+                                                                <option value="SC">Santa Catarina</option>
+                                                                <option value="SP">São Paulo</option>
+                                                                <option value="SE">Sergipe</option>
+                                                                <option value="TO">Tocantins</option>
                                                             </select>
                                                             <small id='ufEmissao' class="form-text text-muted">Digite o estado brasileiro que seu RG foi emitido.</small>
                                                         </div>
@@ -424,13 +485,8 @@
                                                         <!-- Orgão Emissor -->
                                                         <div class="form-group">
                                                             <label for="orgaoEmissor">Orgão Emissor</label>
-                                                            <select id="orgaoEmissor" class="form-control"
-                                                                aria-describedby="orgaoEmissor">
-                                                                <option selected disabled></option>
-                                                                <!-- Inserção de orgãos emissores -->
-                                                            </select>
-                                                            <small id='orgaoEmissor' class="form-text text-muted">Digite o orgão
-                                                                responsável pela emissão do RG.</small>
+                                                            <input type="text" class="form-control" id='orgaoEmissor'>
+                                                            <small id='orgaoEmissor' class="form-text text-muted">Digite o orgão responsável pela emissão do RG.</small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -439,13 +495,7 @@
                                                     <label for="dataNascimento">Data de Nascimento <span
                                                             class='text-danger'><b>*</b></span></label>
                                                     <input type="date" class='form-control' id='dataNascimento' required>
-                                                </div>
-                                                <!-- Deficiência -->
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id='deficiencia'>
-                                                    <label for="deficiencia" class="form-check-label">Possui deficiência?</label>
-                                                </div>
-                                                <!-- Tipo de Deficiência -->                                               
+                                                </div>                                           
                                             </div>
                                         </div>
                                     </div>
@@ -528,7 +578,7 @@
                             <div class="col-12 col-sm-12 col-lg-6">
                                 <div class="card">
                                     <div class="card-header bg-danger text-white font-weight-bold">
-                                        Dados do Fornecedor<i class="icon fas fa-map-marker-alt"></i>
+                                        Dados do Fornecedor<i class="icon far fa-address-card"></i>
                                     </div>
                                     <div class="card-body">
                                         <!-- Classificação -->
@@ -552,22 +602,42 @@
                                                 <option>Turismo/Viagens</option>
                                             </select>
                                         </div>
+                                        <!-- ID da Empresa -->
+                                        <div class="form-group">
+                                            <label for="idEmpresa">ID da Empresa</label>
+                                            <input type='text' name='idEmpresa' class='form-control' id='idEmpresa'>
+                                        </div>
+                                        <?php
+                                            $idEmpresa = $_GET['idEmpresa'];
+
+                                            $url = file_get_contents("http://itajuba.myscriptcase.com/scriptcase/devel/conf/grp/Procon/libraries/php/fornecedor_detalhe.php?id=44");
+
+                                            $json = json_decode($url, true);
+
+                                            $fornecedor_detalhe = $json['fornecedor_detalhe'];
+                                            $nome_fornecedor = $fornecedor_detalhe['nome_fornecedor'];
+                                            $tipo = $fornecedor_detalhe['tipo'];
+                                            $rua = $fornecedor_detalhe['rua'];
+                                            $bairro = $fornecedor_detalhe['bairro'];
+                                            $email = $fornecedor_detalhe['email'];
+                                            $telefone = $fornecedor_detalhe['telefone'];
+                                        ?>
                                         <!-- Nome da Empresa -->
                                         <div class="form-group">
                                             <label for="nomeEmpresa">Nome da Empresa  <span class='text-danger'><b>*</b></span></label>
-                                            <input type="text" class="form-control" id='nomeEmpresa' required>                                        
-                                        </div>
+                                            <?php echo "<input type='text' class='form-control' id='nomeEmpresa' required>";?>
+                                        </div>                                        
                                         <!-- Nome Fantasia -->
                                         <div class="form-group">
                                             <label for="nomeFantasia">Nome Fantasia</label>
-                                            <input type="text" class="form-control" id='nomeFantasia'>                                        
-                                        </div>
+                                            <?php echo "<input type='text' value='$nome_fornecedor' class='form-control' id='nomeFantasia'>"; ?>
+                                        </div>                                        
                                         <div class="row">
                                             <div class="col-8">
                                                 <!-- Email -->
                                                 <div class="form-group">
                                                     <label for="email">Email</label>
-                                                    <input type="text" class="form-control" id='email'>                                        
+                                                    <?php echo "<input type='text' value='$email' class='form-control' id='email'>"; ?>
                                                 </div>
                                             </div>
                                             <div class="col-4">
@@ -613,7 +683,7 @@
                                             <!-- Bairro -->
                                             <div class="form-group">
                                                 <label for="bairro-fornecedor">Bairro <span class='text-danger'><b>*</b></span></label>
-                                                <input name='bairro-fornecedor' type="text" class='form-control' id='bairro-fornecedor' placeholder="Bairro" required readonly>
+                                                <?php echo "<input name='bairro-fornecedor' value='$bairro' type='text' class='form-control' id='bairro-fornecedor' placeholder='Bairro' required readonly>"; ?>
                                             </div>
                                             <!-- Logradouro e Número -->
                                             <div class="row">
@@ -621,7 +691,7 @@
                                                     <!-- Logradouro -->
                                                     <div class="form-group">
                                                         <label for="logradouro-fornecedor">Logradouro <span class='text-danger'><b>*</b></span></label>
-                                                        <input name='logradouro-fornecedor' type="text" class='form-control' id='logradouro-fornecedor' placeholder="Logradouro" required readonly>
+                                                        <?php echo "<input name='logradouro-fornecedor' value='$rua' type='text' class='form-control' id='logradouro-fornecedor' placeholder='Logradouro' required readonly>"; ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
@@ -638,21 +708,9 @@
                                                 <input type="text" class='form-control' id='complemento' required>
                                             </div>
                                             <!-- Telefones -->
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <!-- Telefone Fixo -->
-                                                    <div class="form-group">
-                                                        <label for="telefoneFixo">Telefone Fixo</label>
-                                                        <input type="text" class='form-control' id='telefoneFixo'>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <!-- Telefone Celular -->
-                                                    <div class="form-group">
-                                                        <label for="telefoneCelular">Telefone Celular</label>
-                                                        <input type="text" class='form-control' id='telefoneCelular'>
-                                                    </div>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="telefoneCelular">Telefone Celular</label>
+                                                <?php echo "<input type='text' value='$telefone' class='form-control' id='telefoneCelular'>"; ?>
                                             </div>
                                         </form>
                                     </div>
@@ -662,34 +720,17 @@
                     </div>
                     <!-- Detalhes -->
                     <div class="tab-pane container fade pt-3 px-0" id="detalhes">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <!-- Dados -->
-                            <div class="col-12 col-sm-12 col-lg-12">
+                            <div class="col-12 col-sm-12 col-lg-6">
                                 <div class="card mb-2">
-                                    <div class="card-header bg-danger text-white font-weight-bold">Dados da Compra ou Contratação<i class="icon far fa-address-card"></i></div>
+                                    <div class="card-header bg-danger text-white font-weight-bold">Detalhes da Reclamação<i class="icon fas fa-info-circle"></i></div>
                                     <div class="card-body">
-                                        <!-- "Procurei o fornecedor" -->
-                                        <div class="form-check pb-2">
-                                            <input type="checkbox" id='procurei' class="form-check-input">
-                                            <label for="procurei" class="form-check-label">Procurei o fornecedor para solucionar a questão.</label>                                    
-                                        </div>
                                         <!-- Data da Ocorrência -->
                                         <div class="form-group">
                                             <label for="dataOcorrencia">Data da Ocorrência <span class='text-danger'><b>*</b></span></label>
                                             <input type="date" class='form-control' id='dataOcorrencia' required>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Reclamação -->
-                    <div class="tab-pane container fade pt-3 px-0" id="reclamacao">
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-lg-12">
-                                <div class="card mb-2">
-                                    <div class="card-header bg-danger text-white font-weight-bold"><i class="icon far fa-address-card"></i></div>
-                                    <div class="card-body">
                                         <!-- Detalhes -->
                                         <div class="form-group">
                                             <label for="detalhes">Descreva em detalhes sua reclamação <span class='text-danger'><b>*</b></span></label>
@@ -709,21 +750,21 @@
                                                 <option>Outros (exceto indenização por danos morais, que só podem ser solicitados por meio de ação judicial)</option>
                                             </select>
                                         </div>
+                                        <!-- Anexos -->
+                                        <div class="form-group">
+                                            <label for="anexos">Anexos</label><br>
+                                            <input id='anexos' type="file">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Anexos -->
-                    <div class="tab-pane container fade pt-3 px-0" id="anexos">
-
-                    </div>
-                    <!-- Finalizar -->
-                    <div class="tab-pane container fade pt-3 px-0" id="finalizar"></div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="menu"></div>
 
     <script>
