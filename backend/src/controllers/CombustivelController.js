@@ -9,29 +9,51 @@ class Item {
     }
 }
 
+async function AddCords(item){
+    let cords = await axios.get('http://itajuba.myscriptcase.com/scriptcase/devel/conf/grp/Procon/libraries/php/fornecedor_detalhe.php?id='+item.fornecedorId);
+    cords = [cords.data.fornecedor_detalhe.latitude, cords.data.fornecedor_detalhe.longitude];
+    return cords
+}
+
 module.exports = {
     async index(req, res) {
         const response = await axios.get('http://itajuba.myscriptcase.com/scriptcase/devel/conf/grp/Procon/libraries/php/pesquisa_total.php?id=3&qtde=10');
 
         const vetorDeItems = [];
         const pesquisa_total = response.data.pesquisa_total[0];
-
-        pesquisa_total.pesquisas.forEach(pesquisa => {
+        let count = 0;
+        for(const pesquisa of pesquisa_total.pesquisas){
             let dataPesquisa = pesquisa.data_publicacao;
-            pesquisa.items.forEach(item => {
+            for(const item of pesquisa.items){
                 let itemLocal = new Item();
-                
+
+                    itemLocal.id = count;
+                    itemLocal.fornecedorId = item.indices['fornecedor_menor_id'];                
                     itemLocal.nome = item.nome_produto;
                     itemLocal.fornecedor = item.indices['fornecedor_menor'];
                     itemLocal.preco = item.indices['menor_preco'];
                     itemLocal.data = dataPesquisa;
                     itemLocal.diferenca_menor_maior = item.indices['diferenca_menor_maior'];
                     vetorDeItems.push(itemLocal);
+                    count++;
                 
+            };
+        };
+        let count2 = 0;
+        vetorDeItems.forEach((item) => {
+            AddCords(item).then((cords) => {
+                count2++;
+                item.latitude = cords[0];
+                item.longitude = cords[1];
+                if(count2==vetorDeItems.length){
+                    console.log('Loop acabou');
+                    console.log(vetorDeItems);
+                    return (res.json(vetorDeItems));
+                }
+            }).catch(err => {
+                console.log(err)
             });
-        });
-
-        return (res.json(vetorDeItems))
+        })
     }
 
 }
