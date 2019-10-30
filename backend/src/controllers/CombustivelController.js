@@ -46,8 +46,6 @@ module.exports = {
                 item.latitude = cords[0];
                 item.longitude = cords[1];
                 if(count2==vetorDeItems.length){
-                    console.log('Loop acabou');
-                    console.log(vetorDeItems);
                     return (res.json(vetorDeItems));
                 }
             }).catch(err => {

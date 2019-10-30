@@ -21,27 +21,35 @@ async function loadTableData(query) {
     let diesel = [];
     let etanol = [];
     return await $.get(url, (data) => {
+        console.log(data);
         $.each(data, function (key, value) {
+            let tipo = value.nome.split(" ");
+            tipo = tipo[0];
             if (value.nome === 'Diesel') {
                 diesel.push(value);
                 makeTable('#tabelaDiesel', value);
                 i = 3;
-                qtd_cards++;
-            } else
-                if (value.nome == 'Etanol') {
-                    etanol.push(value);
-                    makeTable('#tabelaEtanol', value);
-                    i = 6;
+            } else if (value.nome == 'Etanol') {
+                etanol.push(value);
+                makeTable('#tabelaEtanol', value);
+                i = 6;
+            } else if (value.nome == 'Gasolina') {
+                gasolina.push(value);
+                makeTable('#tabelaGasolina', value);
+                i = 0;
+            }
+            if (qtd_cards < 9){
+                if(tipo == "Diesel"){
+                    makeCards('#cardsArea1', value);
                     qtd_cards++;
-                } else
-                    if (value.nome == 'Gasolina') {
-                        gasolina.push(value);
-                        makeTable('#tabelaGasolina', value);
-                        i = 0;
-                        qtd_cards++;
-                    }
-            if (qtd_cards <= 9)
-                makeCards('#cardsArea', value);
+                }else if(tipo == "Etanol"){
+                    makeCards('#cardsArea2', value);
+                    qtd_cards++;
+                }else if(tipo == "Gasolina"){
+                    makeCards('#cardsArea3', value);
+                    qtd_cards++;
+                }
+            }
         });
         
         makeCharts(diesel, gasolina, etanol);
@@ -122,8 +130,6 @@ scriptString = scriptString+`
 if(value.id==24){
     scriptString = scriptString+`}
     `;
-
-    console.log(scriptString);
 
     var googleMapsScript = document.createElement('script');
     scriptString = document.createTextNode(scriptString);
