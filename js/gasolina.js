@@ -127,7 +127,7 @@ scriptString = scriptString+`
         title: 'Hello World!'
     });
 `;
-if(value.id==24){
+if(value.id==8){
     scriptString = scriptString+`}
     `;
 
