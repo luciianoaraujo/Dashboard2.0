@@ -1,9 +1,29 @@
 <html>
     <head>
-        <style>.menu-icon{color:#247CC6}.menu-icon:focus{color:#FFC400;} .menu-icon:active{color:rgb(255, 0, 0);font-weight: bold}</style>
+        <style>
+            .menu-icon{
+                color:#247CC6;
+            }
+            .menu-icon:focus{
+                color:#FFC400;
+            }
+            .menu-icon:active{
+                color:#FFC400;
+                font-weight:bold;
+            }
+            a {
+                text-decoration: none;
+                color: black;
+                font-weight: bold;
+            }
+            a:hover {
+                text-decoration: none;
+                color: #247CC6;
+            }
+        </style>
     </head>
     <body>
-        <div class="fixed-bottom bg-light d-flex text-center d-none d-sm-block d-md-none shadow">
+        <div class="fixed-bottom bg-light d-lg-none d-xl-flex shadow" style="display: flex;">
             <div class="p-3 flex-fill">
                 <a href="reclamacao.html">
                     <i id='reclamacao' class="fas menu-icon fa-bullhorn"></i>
@@ -27,6 +47,34 @@
             <div class="p-3 flex-fill">
                 <a>
                     <i id='user' class="fas menu-icon fa-user"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="fixed-bottom bg-light d-none d-lg-flex d-lg-none shadow">
+            <div class="p-3 flex-fill">
+                <a href="reclamacao.html">
+                    <i id='reclamacao' class="fas menu-icon fa-bullhorn"></i> Reclamação Individual
+                </a>
+            </div>
+            <div class="p-3 flex-fill">
+                <a href='gas.html'>
+                    <i id='index' class="fas menu-icon fa-fire-alt"></i> Gás de Cozinha
+                </a>
+            </div>
+            <div class="p-3 flex-fill">
+                <a href="gasolina.html">
+                    <i id='gas' class="fas menu-icon fa-gas-pump"></i> Gasolina
+                </a>
+            </div>
+            <div class="p-3 flex-fill">
+                <a href="cesta.html">
+                    <i id='cesta' class="fas menu-icon fa-shopping-basket"></i> Cesta Básica
+                </a>
+            </div>            
+            <div class="p-3 flex-fill">
+                <a>
+                    <i id='user' class="fas menu-icon fa-user"></i> Sair
                 </a>
             </div>
         </div>

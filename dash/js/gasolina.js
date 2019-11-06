@@ -65,8 +65,10 @@ function makeTable(tableName, value) {
 }
 
 function makeCards(cardsArea, value) {
+    value.nome = value.nome.replace('Aditivado', 'Adt.');
+    value.nome = value.nome.replace('Aditivada', 'Adt.');
     if( value.nome.length > 22 ){
-        value.nome = value.nome.split(" ")[0] + `Promoção`;
+        value.nome = value.nome.split(" ")[0] + `*`;
     }
     let tag = `
 <div class="card2">
@@ -247,18 +249,17 @@ function selecionarCombustivel(escolha, gasolina, etanol) {
         tag = `
         <i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b style="
         color: rgb(255, 196, 0);
-    ">ETANOL ${porcentagem.toFixed(2)*100}%</b> mais barato!
+    ">ETANOL ${porcentagem.toFixed(2)*100}%</b> em relação a gasolina.
         `;
         $(`#${etanol.nome}Card`).addClass('menor-preco');
     } else {
         tag = `
         <i class="fas fa-chevron-down"></i> Qual vale mais a pena? <b style="
         color: rgb(255, 196, 0);
-    ">GASOLINA ${porcentagem.toFixed(2)*100}%</b> mais barato!
+    ">Gasolina no posto: ${gasolina.fornecedor}</b>
         `;
         $(`#${gasolina.nome}Card`).addClass('menor-preco');
     }
-
     $(escolha).append(tag);
 }
 

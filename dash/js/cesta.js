@@ -25,6 +25,7 @@ async function loadTableData(query) {
     })
 }
 function makeDisplay(displayName, value) {
+    value.nome_fornecedor = value.nome_fornecedor.replace('SUPERMERCADO', '');
     let tag = `
     <div class='rank-item'>
         <h4 class='mt-4'>${value.nome_fornecedor}</h4>
@@ -41,28 +42,12 @@ function makeTable(tableName, value) {
 function makeCards(cardsArea, value) {
     let tag = `
 <div class="col-lg-4">
-<div class="card mb-4 cardcom" id='${value.produto}Card'>
+<div class="card mb-4 cardces" id='${value.produto}Card'>
     <div class="card-body">
-        <div class="d-flex justify-content-between align-items-top">
-            <div class="card-name">
-                <h4 class="card-title">${value.nome_fornecedor}</h4>
-            </div>
-            <div class="preco text-center">
+        <div class="text-center">
+                <h4 class="card-title">${value.produto}</h4>
                 <h3 class="card-title text-center">R$${value.preco}</h3>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-8">
-                    <div>
-                        <h6 class="card-title">${value.nome_fornecedor}</h6>
-                        
-                    </div>
-                </div>
-                <div class="col-4">
-                    
-                </div>
-            </div>
+                <h6 class="card-title">${value.nome_fornecedor}</h6>
         </div>
     </div>
 </div>

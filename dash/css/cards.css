@@ -19,8 +19,18 @@
   margin: 0;
 }
 
+h5 {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 4em;
+}
+
+.displayRanking{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
 .card {
-  
   background: #247cc6;
   border-radius: 5rem;
   padding: 1em;
@@ -35,7 +45,6 @@
   transform: scale(0.95);
   width: 100%;
   min-height: 180px;
-
 }
 
 .card:hover {
@@ -47,6 +56,12 @@
 }
 .cardces {
   background-image: url(../img/2.png);
+}
+.cardces h3 {
+  font-size: 3em;
+}
+.cardces h6 {
+  font-size: 1.25em;
 }
 .cardgas {
   background-image: url(../img/1.png);
@@ -61,7 +76,6 @@
 }
 
 #cardsArea {
-  cursor: move;
   -webkit-touch-callout: none;  /* iPhone OS, Safari */
     -webkit-user-select: none;    /* Chrome, Safari 3 */
     -khtml-user-select: none;     /* Safari 2 */
@@ -109,3 +123,6 @@
     display: inline-block;
   }
   
+.display-item {
+  padding: 1.3em;
+}

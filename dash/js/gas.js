@@ -23,6 +23,8 @@ function makeTable(tableName, value) {
 function makeCards(cardsArea, value) {
     value.nome = value.nome.replace('Entrega - ', '');
     value.nome = value.nome.replace('Retirada - ', '');
+    value.nome = value.nome.replace('Cartão/', '');
+    
     let tag = `
 <div class="col-lg-4">
 <div class="card mb-4 cardcom" id='${value.nome}Card'>
