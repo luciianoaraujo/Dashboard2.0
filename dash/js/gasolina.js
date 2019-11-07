@@ -5,6 +5,12 @@ $(window).on('load', async () => {
 $('#escolha').on('click', (e) => {
     $('#escolhaInfo').toggleClass('hide');
 })
+let scriptString = `
+function drawMap() {    
+    var mapOptions = {
+      zoom: 13,
+     }
+ `;
 
 async function loadTableData(query) {
     var url = `http://localhost:3333/${query}`;
@@ -92,7 +98,7 @@ function makeCards(cardsArea, value) {
                 </div>
                 <div class="col-4">
                     <button type="button" class="btn btn-outline-light" 
-                    data-toggle="modal" data-target="#myModal" data-lat='10.85' data-lng='106.62'>
+                    data-toggle="modal" data-target="#Modal${value.id}" data-lat='10.85' data-lng='106.62'>
                         <i class="fas fa-map-marked-alt"></i>
                     </button>
                 </div>
@@ -102,7 +108,7 @@ function makeCards(cardsArea, value) {
 </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="Modal${value.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog  modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -113,14 +119,7 @@ function makeCards(cardsArea, value) {
         <div class="row">
         </div>
         <div class="row">
-          <div class="col-md-12 modal_body_map">
-            <div class="location-map" id="location-map">
-              <div style="width: 100%; height: 100%;" id="map_canvas">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.4853700370763!2d-45.4712888856039!3d-22.423526785259682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cb7b60718369cd%3A0x52192c3a0b812608!2sPosto%20Pedra%20Amarela!5e0!3m2!1spt-BR!2sbr!4v1571809633425!5m2!1spt-BR!2sbr" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-              </div>
-              
-            </div>
-          </div>
+            <div id="map${value.id}" style="height:300px; width:100%"></div>
         </div>
         <div class="row">
           <div class="col-md-12 modal_body_end">
@@ -132,7 +131,30 @@ function makeCards(cardsArea, value) {
   </div>
 </div>
 `
-    $(cardsArea).append(tag);
+    scriptString = scriptString+`
+        map${value.id} = new google.maps.Map(document.getElementById("map${value.id}"), {
+            center: {lat: ${value.latitude}, lng: ${value.longitude}},
+            zoom: 14,
+        });
+        var marker = new google.maps.Marker({
+            position: {lat: ${value.latitude}, lng: ${value.longitude}}, 
+            map: map${value.id},
+        });
+    `;
+    if(value.id==8){
+        scriptString = scriptString+`}
+        `;
+
+        var googleMapsScript = document.createElement('script');
+        scriptString = document.createTextNode(scriptString);
+        googleMapsScript.appendChild(scriptString);
+        document.body.appendChild(googleMapsScript);
+
+        var my_awesome_script = document.createElement('script');
+        my_awesome_script.setAttribute('src',`https://maps.googleapis.com/maps/api/js?key=AIzaSyBCnuLREFEtwCwMuLmAG3Mmre7uOXe7g40&callback=drawMap`);
+        document.body.appendChild(my_awesome_script);
+    }
+    $(cardsArea).append(tag)
 }
 
 

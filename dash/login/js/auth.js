@@ -8,7 +8,7 @@ $('#login').click(() => {
     let email = $('#email').val();
     let senha = $('#senha').val();
     firebase.auth().signInWithEmailAndPassword(email, senha).then(()=>{
-    	window.location.href = "../../dash/views/gasolina.html";
+    	window.location.href = "../views/gasolina.html";
     }).catch(function(error) {
   console.log(error)
   console.log('nao deu')
@@ -19,11 +19,11 @@ $('#login').click(() => {
 })
 
 
-$('#logout').click(()=>{	
+$('#Logout').click(()=>{
 	firebase.auth().signOut().then(function() {
 	  // Sign-out successful.
 	}).then(result =>{
-    	window.location.href = "../../login.html";
+    	window.location.href = "../login/index.html";
 	})
 	.catch(function(error) {
 		console.log(error)
@@ -41,7 +41,7 @@ $('#createUser').click(()=>{
 					firebase.auth().createUserWithEmailAndPassword(email, senha)
 					.then(() => {
 						alert('Cadastro efetuado com sucesso!')
-    					window.location.href = "../../dash/views/gasolina.html";
+    					window.location.href = "../views/gasolina.html";
 					})
 					.catch(function(error) {
 					  var errorCode = error.code;
@@ -75,21 +75,20 @@ $('#createUser').click(()=>{
 firebase.auth().onAuthStateChanged(function(user) {
 
 	let freePages = ['index', 'login', 'recuperar_senha', 'cadastro'];
-	let currentPage = window.location.href.split('/')
+	let currentPage = window.location.href.split('/');
 	currentPage = currentPage[currentPage.length-1].split('.');
-	currentPage = currentPage[0]
+	currentPage = currentPage[0];
 
   	if (user && freePages.indexOf(currentPage)<0) {
-	    var displayName = user.displayName;
 	    var email = user.email;
 	    var uid = user.uid;
 	    console.log('user is loged in');
 	    console.log(email);
 	    console.log(uid);
   	} else if(user && freePages.indexOf(currentPage)>=0){
-  		window.location.href = "../../dash/views/gasolina.html";
+  		window.location.href = "../views/gasolina.html";
   	}else if(!user && freePages.indexOf(currentPage)<0){
-  		window.location.href = "../../login.html";
+  		window.location.href = "../login/login.html";
   	}
   	else {
     	console.log('user is loged out');
@@ -104,8 +103,8 @@ $('#facebookAuth').click(()=> {
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
-    alert(user)
   }).catch(function(error) {
+	alert('Falha na autenticação');
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log(errorCode)

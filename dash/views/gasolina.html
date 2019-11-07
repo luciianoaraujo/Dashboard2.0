@@ -19,6 +19,10 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
+  <!-- Firebase-->  	
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+
   <!-- CSS personalizado -->
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/cards.css">
@@ -52,6 +56,7 @@
   <div id="container justify-content-center">
       <div id="navigationBar" class="d-none d-md-block"></div>
     <h1>Menores preços de combustíveis em Itajubá</h1>
+    <h2 id="Logout">Logout</h2>
    <hr>
     <h2>Gasolina
         <div class="btn-group dropright">
@@ -190,6 +195,23 @@
       });
       
     </script>
+  <!-- Autenticação de usuario -->
+  <script>
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+	    apiKey: "AIzaSyACRG5j_6gR-mZK8o80jD3ZGSHyTgMzxe0",
+	    authDomain: "proconvoce.firebaseapp.com",
+	    databaseURL: "https://proconvoce.firebaseio.com",
+	    projectId: "proconvoce",
+	    storageBucket: "proconvoce.appspot.com",
+	    messagingSenderId: "645245522688",
+	    appId: "1:645245522688:web:0e6b79e6cc9aae31"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+
+	</script>
+  <script src="../login/js/auth.js"></script>
 </body>
 
 </html>
