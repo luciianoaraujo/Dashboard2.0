@@ -2,6 +2,12 @@ $(window).on('load', async () => {
     loadTableData('gas');
     btnArea();
 })
+let scriptString = `
+function drawMap() {    
+    var mapOptions = {
+      zoom: 13,
+     }
+ `;
 
 async function loadTableData(query) {
     var url = `http://localhost:3333/${query}`;
@@ -47,7 +53,7 @@ function makeCards(cardsArea, value) {
                 </div>
                 <div class="col-4">
                     <button type="button" class="btn btn-outline-light" 
-                    data-toggle="modal" data-target="#myModal" data-lat='10.85' data-lng='106.62'>
+                    data-toggle="modal" data-target="#Modal${value.id}" data-lat='10.85' data-lng='106.62'>
                         <i class="fas fa-map-marked-alt"></i>
                     </button>
                 </div>
@@ -57,29 +63,22 @@ function makeCards(cardsArea, value) {
 </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="Modal${value.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog  modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
+      <h4 class="modal-title" id="myModalLabel">${value.nome}:</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12 modal_body_content">
-            <p>Some contents...</p>
-          </div>
         </div>
         <div class="row">
-          <div class="col-md-12 modal_body_map">
-            <div class="location-map" id="location-map">
-              <div style="width: 600px; height: 400px;" id="map_canvas"></div>
-            </div>
-          </div>
+            <div id="map${value.id}" style="height:300px; width:100%"></div>
         </div>
         <div class="row">
           <div class="col-md-12 modal_body_end">
-            <p>Else...</p>
+          <button type="button" class="btn btn-primary btn-lg btn-block">Ligar <i class="fas fa-phone"></i></button>
           </div>
         </div>
       </div>
@@ -87,6 +86,28 @@ function makeCards(cardsArea, value) {
   </div>
 </div>
 `
+    scriptString = scriptString+`
+        map${value.id} = new google.maps.Map(document.getElementById("map${value.id}"), {
+            center: {lat: ${value.latitude}, lng: ${value.longitude}},
+            zoom: 14,
+        });
+        var marker = new google.maps.Marker({
+            position: {lat: ${value.latitude}, lng: ${value.longitude}}, 
+            map: map${value.id},
+        });
+    `;
+    if(value.id==5){
+        scriptString = scriptString+`}
+        `;
 
-    $(cardsArea).append(tag);
+        var googleMapsScript = document.createElement('script');
+        scriptString = document.createTextNode(scriptString);
+        googleMapsScript.appendChild(scriptString);
+        document.body.appendChild(googleMapsScript);
+
+        var my_awesome_script = document.createElement('script');
+        my_awesome_script.setAttribute('src',`https://maps.googleapis.com/maps/api/js?key=AIzaSyBCnuLREFEtwCwMuLmAG3Mmre7uOXe7g40&callback=drawMap`);
+        document.body.appendChild(my_awesome_script);
+    }
+    $(cardsArea).append(tag)
 }
