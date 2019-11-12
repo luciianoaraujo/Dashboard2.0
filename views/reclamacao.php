@@ -12,13 +12,10 @@
 
             Identificação:
             https://prnt.sc/pbv0b0
-    -->
+-->
 
+<!-- https://gomoodie.com/reclamacao.php --> 
 
-<!-- 
-    Autocomplete com as informações do usuário
-    Máscara para o CPF
---> 
 <!DOCTYPE html>
 <html lang="en">
     
