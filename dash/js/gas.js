@@ -34,7 +34,7 @@ function makeCards(cardsArea, value) {
                 <h4 class="card-title">${value.nome}</h4>
             </div>
             <div class="preco text-center">
-                <h3 class="card-title text-center">R$${value.preco}</h3>
+                <h3 class="card-title text-center"> R$${value.preco}</h3>
             </div>
         </div>
         <div class="container">
