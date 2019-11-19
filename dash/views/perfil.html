@@ -31,28 +31,30 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#imageUpload").change(function() {
+    readURL(this);
+});
+</script>
 </head>
 <body>
-	
 <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('../login/images/bg-01.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form" method="POST">
-					<span class="login100-form-title p-b-10">
-							<div class="sair" 
-							style="position: absolute;">
-							
-								<a href="index.html">
-									<span class="glyphicon glyphicon-chevron-left"></span>
-								</a>
-							</div>
-						Nome do usuario
-						<h2 id="email"></h2>
-						
-					</span>
-
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Nome irregular">
 						<span class="label-input100">Email</span>
 						<input id="email" class="input100" type="text" name="username" placeholder="Eamil obrigatório">
@@ -69,9 +71,8 @@
 						<a href="../login/recuperar_senha.html">
 							Alterar Senha?
 						</a>
-          </div>
-          <h2 id="email"></h2>
-		  
+					</div>
+
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
@@ -79,12 +80,40 @@
 								Atualizar
 							</button>
 						</div>
+						<div class="login100-form-title p-b-10">
+							<h2 id="Logout">Sair</h2>				
+						</div>
 					</div>
+
 				</form>
+				<div class="container">
+						<div class="avatar-upload">
+							<div class="avatar-edit">
+								<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+								<label for="imageUpload"></label>
+							</div>
+							<div class="avatar-preview">
+								<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+								</div>
+							</div>
+						</div>
+					</div>
 			</div>
 		</div>
 	</div>
 	
+	<div class="container">
+		<div class="avatar-upload">
+			<div class="avatar-edit">
+				<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+				<label for="imageUpload"></label>
+			</div>
+			<div class="avatar-preview">
+				<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div id="dropDownSelect1"></div>
 
@@ -113,47 +142,24 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// Variaveis de Users
-var user = firebase.auth(firebaseConfig).currentUser;
-var name, email, photoUrl, uid, emailVerified;
-
-if (user != null) {
-name = user.displayName;
-email = user.email;
-photoUrl = user.photoURL;
-uid = user.uid;
-}
-console.log(firebase.auth().uid);
-document.getElementById("email").innerHTML = email; 
-
-// var email = user.email; // The email of the user.
-//     if (email == undefined) {
-//     for (var provider of user.providerData) {
-//         if (provider.email) {
-//         email = provider.email;
-//         break;
-//         }
-//     }
-// }
-
 </script>
 <!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../login//vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="../login/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../login/vendor/bootstrap/js/popper.js"></script>
+	<script src="../login/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src="../login/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="../login/vendor/daterangepicker/moment.min.js"></script>
+	<script src="../login/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="../login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 
-	<script src="login/js/login.js"></script>
+	<script src="../login/js/login.js"></script>
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 
 	<!-- TODO: Add SDKs for Firebase products that you want to use
@@ -176,7 +182,5 @@ document.getElementById("email").innerHTML = email;
 	  const email = firebase.auth().currentUser.email;
 
 	</script>
-    <script src="login\js\auth.js"></script>
-
 </body>
 </html>

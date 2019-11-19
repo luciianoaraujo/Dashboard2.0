@@ -17,7 +17,7 @@ async function AddCords(item){
 
 module.exports = {
     async index(req, res) {
-        const response = await axios.get('http://itajuba.myscriptcase.com/scriptcase/devel/conf/grp/Procon/libraries/php/pesquisa_total.php?id=3&qtde=5');
+        const response = await axios.get('http://itajuba.myscriptcase.com/scriptcase/devel/conf/grp/Procon/libraries/php/pesquisa_total.php?id=3&qtde=10');
 
         const vetorDeItems = [];
         const pesquisa_total = response.data.pesquisa_total[0];
