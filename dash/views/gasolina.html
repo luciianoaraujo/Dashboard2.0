@@ -57,7 +57,7 @@
       <div id="navigationBar" class="d-none d-md-block"></div>
     <h1>Menores preços de combustíveis em Itajubá</h1>
    <hr>
-    <h2>Gasolina
+    <h2><i class="fas fa-gas-pump"></i> Gasolina
         <div class="btn-group dropright">
             <button type="button" class="btn bg-transparent btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <i style="color: #888;" class="fas fa-info-circle"></i>
@@ -69,7 +69,7 @@
       </h2>
     <div class="scrolling-wrapper" id="cardsAreaGasolina"></div>
 <hr>
-    <h2>Etanol
+    <h2><i class="fas fa-gas-pump"></i> Etanol
         <div class="btn-group dropright">
             <button type="button" class="btn bg-transparent btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <i style="color: #888;" class="fas fa-info-circle"></i>
@@ -84,7 +84,7 @@
       
     </div>
 <hr>
-    <h2>Diesel</h2>
+    <h2><i class="fas fa-gas-pump"></i> Diesel</h2>
     <div class="scrolling-wrapper" id="cardsAreaDiesel">
       
     </div>
@@ -103,7 +103,7 @@
     <!-- graficos -->
     <hr>
     <div class="container">
-      <h3 class="section-title mt-4">Histórico</h3>
+      <h3 class="section-title mt-4"><i class="fas fa-chart-line"></i> Histórico</h3>
     </div>
     <div class="d-flex align-content-around" id="chartArea">
       <!-- Page level plugins -->
@@ -113,9 +113,10 @@
       <canvas class='col-xs-12 col-md-4' id="chartGas" height="230px"></canvas>
 
     </div>
+    <hr>
     <!-- tabela de combustiveis -->
     <div id="tabela" class="table-responsive container">
-      <h3 class="section-title mt-4">Últimas Pesquisas</h3>
+      <h3 class="section-title mt-4"><i class="fas fa-history"></i> Últimas Pesquisas</h3>
       <!-- divs no topo da tabela -->
       <ul class="nav nav-tabs justify-content-center nav-fill" id="pills-tab" role="tablist">
         <li class="nav-item">
@@ -135,9 +136,9 @@
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
           <table class="table">
             <thead>
-              <th>Fornecedor</th>
-              <th>Data</th>
-              <th>Preço</th>
+              <th><i class="fas fa-dolly"></i> Fornecedor</th>
+              <th><i class="far fa-calendar-alt"></i> Data</th>
+              <th><i class="fas fa-dollar-sign"></i> Preço</th>
             </thead>
             <tbody id='tabelaGasolina'>
             </tbody>
@@ -146,9 +147,9 @@
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
           <table class="table">
             <thead>
-              <th>Fornecedor</th>
-              <th>Data</th>
-              <th>Preço</th>
+              <th><i class="fas fa-dolly"></i> Fornecedor</th>
+              <th><i class="far fa-calendar-alt"></i> Data</th>
+              <th><i class="fas fa-dollar-sign"></i> Preço</th>
             </thead>
             <tbody id='tabelaEtanol'>
             </tbody>
@@ -157,9 +158,9 @@
         <div class="tab-pane fade" id="pills-diesel" role="tabpanel" aria-labelledby="pills-diesel-tab">
           <table class="table">
             <thead>
-              <th>Fornecedor</th>
-              <th>Data</th>
-              <th>Preço</th>
+              <th><i class="fas fa-dolly"></i> Fornecedor</th>
+              <th><i class="far fa-calendar-alt"></i> Data</th>
+              <th><i class="fas fa-dollar-sign"></i> Preço</th>
             <tbody id='tabelaDiesel'>
             </tbody>
             </thead>
@@ -172,8 +173,6 @@
     </div>
 
     <div class="menu"></div>
-
-    
 
   </div>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -211,9 +210,6 @@
 
 	</script>
   <script src="../login/js/auth.js"></script>
-  <script>
-    var email = firebase.auth().currentUser.email;
-  </script>
 </body>
 
 </html>

@@ -214,3 +214,9 @@ tbody tr:hover {
     -webkit-transform: scaleY(1);
   }
 }
+
+#imgPerfil {
+  border-radius: 10px;
+  width: auto;
+  height: auto;
+}

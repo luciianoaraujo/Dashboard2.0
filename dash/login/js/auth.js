@@ -73,18 +73,33 @@ $('#createUser').click(()=>{
 })
 
 firebase.auth().onAuthStateChanged(function(user) {
-
 	let freePages = ['index', 'login', 'recuperar_senha', 'cadastro'];
 	let currentPage = window.location.href.split('/');
 	currentPage = currentPage[currentPage.length-1].split('.');
 	currentPage = currentPage[0];
 
   	if (user && freePages.indexOf(currentPage)<0) {
-	    var email = user.email;
-	    var uid = user.uid;
-	    console.log('user is loged in');
-	    console.log(email);
-	    console.log(uid);
+	    var email = ("  Email: " + user.email);
+		var uid = ("  Codigo do usuario: " + user.uid);
+		var name = ("  Nome: " + user.displayName);
+		var photoUrl = ("  Foto: " + user.photoURL);
+
+		document.getElementById("emailUser").innerHTML = email;
+		document.getElementById("uidUser").innerHTML = uid;
+		document.getElementById("nameUser").innerHTML = name;
+		document.getElementById("photoUrlUser").innerHTML = photoUrl;		
+
+		var user = firebase.auth().currentUser;
+
+		if (user != null) {
+		user.providerData.forEach(function (profile) {
+			console.log("  Name: " + profile.displayName);
+			console.log("  Email: " + profile.email);
+			console.log("  Photo URL: " + profile.photoURL);
+		});
+		}
+
+
   	} else if(user && freePages.indexOf(currentPage)>=0){
   		window.location.href = "../views/gasolina.html";
   	}else if(!user && freePages.indexOf(currentPage)<0){

@@ -1,170 +1,211 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-	<title>Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="../login/images/icons/logo_redonda_A18_Rectangle_7_pattern.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../login/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../login/fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../login/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../login/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../login/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../login/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../login/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../login/css/util.css">
-  <link rel="stylesheet" type="text/css" href="../login/css/main.css">
-<!-- fontawesome -->
-<script src="../vendor/fontawesome-free/js/all.js"></script>
-<!--===============================================================================================-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Procon Web - Perfil</title>
+  <!-- fontawesome -->
+  <script src="../vendor/fontawesome-free/js/all.js"></script>
+
+  <!-- Firebase-->  	
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+  
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/animate.css">
+
+  <style>
+    .container{
+      background-image: url('../login/images/bg-01.jpg');
+      background-repeat: no-repeat;   
+      background-size: cover;
+      background-attachment: fixed;
+      margin-top: 10%;
+    }
+    .avatar-upload {
+      position: relative;
+      max-width: 205px;
+      margin: 50px auto;
+    }
+    .avatar-upload .avatar-edit {
+      position: absolute;
+      right: 12px;
+      z-index: 1;
+      top: 10px;
+    }
+    .avatar-upload .avatar-edit input {
+      display: none;
+    }
+    .avatar-upload .avatar-edit input + label {
+      display: inline-block;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 0;
+      border-radius: 100%;
+      background: #FFFFFF;
+      border: 1px solid transparent;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      font-weight: normal;
+      transition: all 0.2s ease-in-out;
+    }
+    .avatar-upload .avatar-edit input + label:hover {
+      background: #f1f1f1;
+      border-color: #d6d6d6;
+    }
+    .avatar-upload .avatar-edit input + label:after {
+      content: "\f040";
+      font-family: 'FontAwesome';
+      color: #757575;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      margin: auto;
+    }
+    .avatar-upload .avatar-preview {
+      width: 192px;
+      height: 192px;
+      position: relative;
+      border-radius: 100%;
+      border: 6px solid #F8F8F8;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+    .avatar-upload .avatar-preview > div {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  </style>
+</head>
+
+<body class="container text-center">
+
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-md-4 col-sm-12">
+
+      <!-- Avatar -->
+          <div class="avatar-upload">
+            <div class="avatar-edit">
+              <input type='file' id="imageUpload" />
+                <label for="imageUpload">
+                  <i class="fas fa-pen"></i>
+                </label>
+                </div>
+                <div class="avatar-preview">
+                  <div id="imagePreview" style="background-image: url();">
+                </div>
+                <div id="photoUrlUser"></div>
+              </div>
+            </div>
+          </div>
+      <!-- Avatar -->
+  
+    <div class="col-md-8 col-sm-12" style="color: white;">
+
+      <!-- Dados -->
+      <h1 style="color: white;">
+          <div id="nameUser"></div>
+      </h1>
+      <h2>
+          <div id="emailUser"></div>        
+      </h2>
+      <h7>
+        <div id="uidUser"></div>
+      </h7>
+      <hr>
+      <button class="btn btn-outline-light" data-toggle="modal" 
+      data-target=".bs-example-modal-sm"><i class="fas fa-cog"></i> Configurações
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Preloader -->
+  
+  <div id="preloader">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+  </div>
+
+<!-- Modal de opções -->
+
+  <div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header"><h4>Opções:</h4></div>
+        <div class="modal-body">
+            <div class="text-center p-t-8 p-b-31">
+              <a href="../login/recuperar_senha.html">
+                <i class="fas fa-unlock-alt"></i> Alterar senha
+              </a>
+            </div>
+        </div>
+        <div class="modal-footer"><a href="javascript:;" class="btn btn-outline-primary btn-sm btn-block"><h2 id="Logout"><i class="fas fa-sign-out-alt"></i> Sair</h2></a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu -->
+
+  <div class="menu"></div>
+
+  <script>
+      $(document).ready(function() {
+          $('.menu').load('menu.html');
+      });
+
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
             $('#imagePreview').css('background-image', 'url('+e.target.result +')');
             $('#imagePreview').hide();
             $('#imagePreview').fadeIn(650);
+          }
+          reader.readAsDataURL(input.files[0]);
         }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-$("#imageUpload").change(function() {
-    readURL(this);
-});
-</script>
-</head>
-<body>
-<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('../login/images/bg-01.jpg');">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" method="POST">
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Nome irregular">
-						<span class="label-input100">Email</span>
-						<input id="email" class="input100" type="text" name="username" placeholder="Eamil obrigatório">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
+      }
+      $("#imageUpload").change(function() {
+          readURL(this);
+      });        
+  </script>
 
-					<div class="wrap-input100 validate-input" data-validate="Senha é irregular">
-						<span class="label-input100">Senha</span>
-						<input id="senha" class="input100" type="password" name="pass" placeholder="Digite sua Senha">
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-					
-					<div class="text-right p-t-8 p-b-31">
-						<a href="../login/recuperar_senha.html">
-							Alterar Senha?
-						</a>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button type="button" class="login100-form-btn" id="atualizar">
-								Atualizar
-							</button>
-						</div>
-						<div class="login100-form-title p-b-10">
-							<h2 id="Logout">Sair</h2>				
-						</div>
-					</div>
-
-				</form>
-				<div class="container">
-						<div class="avatar-upload">
-							<div class="avatar-edit">
-								<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-								<label for="imageUpload"></label>
-							</div>
-							<div class="avatar-preview">
-								<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="container">
-		<div class="avatar-upload">
-			<div class="avatar-edit">
-				<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-				<label for="imageUpload"></label>
-			</div>
-			<div class="avatar-preview">
-				<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="dropDownSelect1"></div>
-
-  <div class="menu"></div>
-    <script src="../login/js/auth.js"></script>
-    <script>
-        $(document).ready(function () {
-          
-          $('.menu').load('menu.html');
-        });
-      </script>
-
-<!----------------------------------------Area de testes de dados do Firebase-------------------------------------------->
-<script>  
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyACRG5j_6gR-mZK8o80jD3ZGSHyTgMzxe0",
-    authDomain: "proconvoce.firebaseapp.com",
-    databaseURL: "https://proconvoce.firebaseio.com",
-    projectId: "proconvoce",
-    storageBucket: "proconvoce.appspot.com",
-    messagingSenderId: "645245522688",
-    appId: "1:645245522688:web:0e6b79e6cc9aae31"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-</script>
-<!--===============================================================================================-->
-	<script src="../login//vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../login/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../login/vendor/bootstrap/js/popper.js"></script>
-	<script src="../login/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../login/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../login/vendor/daterangepicker/moment.min.js"></script>
-	<script src="../login/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="../login/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-
-	<script src="../login/js/login.js"></script>
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-	     https://firebase.google.com/docs/web/setup#config-web-app -->
-	<script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../vendor/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="../js/index.js"></script>
+  <script src="../js/cesta.js"></script>
+  <!-- Autenticação de usuario -->
+  <script>
 	  // Your web app's Firebase configuration
 	  var firebaseConfig = {
 	    apiKey: "AIzaSyACRG5j_6gR-mZK8o80jD3ZGSHyTgMzxe0",
@@ -178,9 +219,8 @@ firebase.initializeApp(firebaseConfig);
 	  // Initialize Firebase
 	  firebase.initializeApp(firebaseConfig);
 
-	  //puxar dados dos usuarios
-	  const email = firebase.auth().currentUser.email;
-
 	</script>
+  <script src="../login/js/auth.js"></script>
 </body>
+
 </html>

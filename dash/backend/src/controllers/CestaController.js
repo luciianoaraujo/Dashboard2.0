@@ -1,11 +1,12 @@
 const axios = require('axios')
 
 class Item {
-    constructor(nome, preco, fornecedor, dataPesquisa) {
+    constructor(nome, preco, fornecedor, dataPesquisa, media) {
         this.nome = nome;
         this.preco = preco;
         this.fornecedor = fornecedor;
         this.data = dataPesquisa;
+        this.media = media;
     }
 }
 
@@ -21,7 +22,8 @@ module.exports = {
             cesta.data = pesquisa.data_publicacao;
             cesta.cesta_barata = pesquisa['cesta_barata'];
             cesta.ranking_cesta = pesquisa['ranking_cesta'];
-
+            cesta.itens = pesquisa["items"]
+            console.log(cesta.itens);
         });
         
 

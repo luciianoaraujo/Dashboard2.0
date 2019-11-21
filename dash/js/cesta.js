@@ -2,9 +2,9 @@ $(window).on('load', async () => {
     loadTableData('cesta');
     btnArea();
 })
+
 $('#escolha').on('click', (e) => {
     $('#escolhaInfo').toggleClass('hide');
-
 })
 
 async function loadTableData(query) {
@@ -18,7 +18,7 @@ async function loadTableData(query) {
         });
         $.each(data.cesta_barata.items, function (aux_key, aux_value) {
             $.each(data.cesta_barata.items[aux_key], function (key, value) {
-                makeCards('#cardsArea', value);
+                makeCards('#cardsArea', value, data.itens[key].indices.media);
             });
         });
         $('#preloader').fadeOut(500, function() { $(this).remove(); });
@@ -27,7 +27,7 @@ async function loadTableData(query) {
 function makeDisplay(displayName, value) {
     value.nome_fornecedor = value.nome_fornecedor.replace('SUPERMERCADO', '');
     let tag = `
-    <div class='rank-item'>
+    <div class='rank-item col-sm-12 col-md-4'>
         <h4 class='mt-4'>${value.nome_fornecedor}</h4>
         <h5>R$${value.preco}</h5>
     </div>
@@ -39,15 +39,16 @@ function makeTable(tableName, value) {
     $(tableName).append(tag);
 }
 
-function makeCards(cardsArea, value) {
+function makeCards(cardsArea, value, x) {
     let tag = `
 <div class="col-lg-4">
 <div class="card mb-4 cardces" id='${value.produto}Card'>
     <div class="card-body">
         <div class="text-center">
-                <h4 class="card-title">${value.produto}</h4>
+                <h4 class="card-title m-0">${value.produto}</h4>
                 <h3 class="card-title text-center">R$${value.preco}</h3>
                 <h6 class="card-title">${value.nome_fornecedor}</h6>
+                <span class="small">Preço médio: R$${x}</span>
         </div>
     </div>
 </div>

@@ -39,7 +39,6 @@ module.exports = {
                     vetorDeItems.push(itemLocal);
                     count++;
                 }
-                console.log( itemLocal );
             });
         });
         let count2 = 0;
