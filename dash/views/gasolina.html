@@ -186,10 +186,11 @@
   <script src="../js/index.js"></script>
   <script src="../js/gasolina.js"></script>
   <script>
-    
-      $(document).ready(function () {
-        
-        $('.menu').load('menu.html');
+
+      $(function() {
+        $(".menu").load("menu.html", function() {
+          jQuery('.item-combustivel').addClass('active');
+        });
       });
       
     </script>
